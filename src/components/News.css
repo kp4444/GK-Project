@@ -1,0 +1,25 @@
+.sidebar-section img {
+  width: 100%;
+  margin-bottom: 2em;
+}
+input[type=text] {
+    border: 1px solid black;
+    border-radius: 4px;
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+
+input[type=date] {
+    border: 1px solid black;
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+
+.sidebar-background {
+
+  background-color: #f1f1f1;
+}
