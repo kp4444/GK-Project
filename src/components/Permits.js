@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { Grid, Row, Button, Col, Tabs, Image, Nav, NavDropdown, NavItem, Tab, MenuItem } from 'react-bootstrap';
 import './News.css';
 import { fire } from '../fire';
+import form2a from './form2a';
+import { Link, Route } from 'react-router-dom';
+
 
 
 
@@ -113,6 +116,10 @@ export default class Permits extends Component {
 
                     <button>Print Permit</button>
                 </form>
+
+                <Link to="/form2a">
+                  <Button bsStyle="primary">Your Permit</Button>
+                </Link>
           </section>
           </Col>
           </Row>
