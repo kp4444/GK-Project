@@ -4,6 +4,7 @@ import './News.css';
 import { fire } from '../fire';
 import form2a from './form2a';
 import { Link, Route } from 'react-router-dom';
+import './form2a.css';
 
 
 
