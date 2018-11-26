@@ -4,6 +4,8 @@ import './News.css';
 import { fire } from '../fire';
 import { Link, Route } from 'react-router-dom';
 import { PDFExport } from '@progress/kendo-react-pdf';
+import './form2a.css';
+
 
 
 
@@ -115,6 +117,11 @@ export default class form2a extends Component {
     this.resume.save();
 }
 
+rawMarkup(){
+    var rawMarkup = this.props.content
+    return { __html: rawMarkup };
+}
+
 
   render() {
     return (
@@ -213,7 +220,11 @@ export default class form2a extends Component {
 
       </Tab>
       <Tab eventKey={2} title="Section B">
-        Tab 2 content
+
+
+
+
+
       </Tab>
       <Tab eventKey={3} title="Section C">
         Tab 3 content
@@ -251,6 +262,10 @@ export default class form2a extends Component {
             overflowY: 'hidden'}}>
 
             <Row>
+
+
+
+
 
               <Col xs={6} md={4}>
 

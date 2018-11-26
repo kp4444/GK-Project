@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@progress/kendo-drawing": "^1.5.7",
+    "@progress/kendo-react-pdf": "^2.3.2",
     "firebase": "^5.5.8",
     "firebaseui": "^3.4.1",
     "react": "^16.6.3",
@@ -10,6 +12,8 @@
     "react-dom": "^16.6.3",
     "react-firebaseui": "^3.1.2",
     "react-google-charts": "^3.0.10",
+    "react-pdf-js": "^4.0.1",
+    "react-render-html": "^0.6.0",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.1"
   },
