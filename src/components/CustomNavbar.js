@@ -32,6 +32,9 @@ export default class CustomNavbar extends Component {
             <NavItem eventKey={5} componentClass={Link} href="/permits" to="/permits">
               Permits
             </NavItem>
+            <NavItem eventKey={6} componentClass={Link} href="/files" to="/files">
+              Files
+            </NavItem>
 
             <Button bsStyle="info" onClick={() => firebase.auth().signOut()}>Sign Out
 
