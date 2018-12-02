@@ -175,7 +175,7 @@ rawMarkup(){
 
          <FlexRow>  <Grid>
             <Row>
-              <Col xs={6} md={6}>
+              <Col xs={400} md={1000}>
           <section className='add-item'>
 
             <form onSubmit={this.handleSubmit}>
@@ -191,8 +191,8 @@ rawMarkup(){
                     <input type="text" name="telephoneNumber" placeholder="Who is your contact Person?" onChange={this.handleChange} value={this.state.telephoneNumber} />
                       <p>Facility Address</p>
                       <input type="text" name="facilityAddress" placeholder="Who is your contact Person?" onChange={this.handleChange} value={this.state.facilityAddress} />
-             <FlexRow> <button>Add sample</button>
-              <button style={{ marginLeft: "5px"}} className="k-button" onClick={() => { this.pdfExportComponent.save(); }}>
+             <FlexRow> <button style={{ width: "125px"}}>Add sample</button>
+              <button style={{ marginLeft: "200px", width: "125px"}} className="k-button" onClick={() => { this.pdfExportComponent.save(); }}>
 
                         Export PDF
                     </button> </FlexRow>
@@ -215,8 +215,8 @@ rawMarkup(){
 
                     {/* For details see:
                     http://www.telerik.com/kendo-react-ui/components/drawing/drawing-dom/#toc-dimensions-and-css-units */}                               
-                          <div style={{  width: "812px", height: "792px" }}>
-                            <div style={{ position: "absolute", left: 200, top: 0 }}>
+                          <div style={{  width: "612px", height: "792px" }}>
+                            <div style={{ position: "absolute", left: 0, top: 0 }}>
                               <img
                                 style={{boxShadow: '5px 5px 5px black'}}
                                 src={backgroundPhoto2}
@@ -225,43 +225,43 @@ rawMarkup(){
                               />
                             </div>
                               <div
-                                style={{ position: "absolute", left: "241.39px", top: "27.78px" }}
+                                style={{ position: "absolute", left: "41.39px", top: "27.78px" }}
                                 className="cls_006"
                               >
                                 <span className="cls_006">FACILITY NAME AND PERMIT NUMBER:</span>
                               </div>
                               <div
-                                style={{ position: "absolute", left: "241.39px", top: "40.78px" }}
+                                style={{ position: "absolute", left: "41.39px", top: "40.78px" }}
                                 className="cls_006"
                               >
                                 <span className="cls_006">{this.state.facilityName}</span>
                               </div>
                               <div
-                                style={{ position: "absolute", left: "673.40px", top: "27.90px" }}
+                                style={{ position: "absolute", left: "473.40px", top: "27.90px" }}
                                 className="cls_007"
                               >
                                 <span className="cls_007">Form Approved 1/14/99</span>
                               </div>
                               <div
-                                style={{ position: "absolute", left: "673.40px", top: "35.94px" }}
+                                style={{ position: "absolute", left: "473.40px", top: "35.94px" }}
                                 className="cls_007"
                               >
                                 <span className="cls_007">OMB Number 2040-0086</span>
                               </div>
                               <div
-                                style={{ position: "absolute", left: "247.46px", top: "61.56px" }}
+                                style={{ position: "absolute", left: "47.46px", top: "61.56px" }}
                                 className="cls_008"
                               >
                                 <span className="cls_008">FORM</span>
                               </div>
                               <div
-                                style={{ position: "absolute", left: "250.64px", top: "71.52px" }}
+                                style={{ position: "absolute", left: "50.64px", top: "71.52px" }}
                                 className="cls_010"
                               >
                                 <span className="cls_010">2A</span>
                               </div>
                               <div
-                                style={{ position: "absolute", left: "290.90px", top: "70.20px" }}
+                                style={{ position: "absolute", left: "90.90px", top: "70.20px" }}
                                 className="cls_010"
                               >
                                 <span className="cls_010">
@@ -269,19 +269,19 @@ rawMarkup(){
                                 </span>
                               </div>
                               <div
-                                style={{ position: "absolute", left: "245.24px", top: "90.30px" }}
+                                style={{ position: "absolute", left: "45.24px", top: "90.30px" }}
                                 className="cls_008"
                               >
                                 <span className="cls_008">NPDES</span>
                               </div>
                               <div
-                                style={{ position: "absolute", left: "241.40px", top: "113.40px" }}
+                                style={{ position: "absolute", left: "41.40px", top: "113.40px" }}
                                 className="cls_011"
                               >
                                 <span className="cls_011">APPLICATION OVERVIEW</span>
                               </div>
                               <div
-                                style={{ position: "absolute", left: "241.40px", top: "134.64px" }}
+                                style={{ position: "absolute", left: "41.40px", top: "134.64px" }}
                                 className="cls_011"
                               >
                                 <span className="cls_011">
@@ -290,7 +290,7 @@ rawMarkup(){
                                 </span>
                               </div>
                               <div
-                                style={{ position: "absolute", left: "241.40px", top: "146.16px" }}
+                                style={{ position: "absolute", left: "41.40px", top: "146.16px" }}
                                 className="cls_011"
                               >
                                 <span className="cls_011">
@@ -299,7 +299,7 @@ rawMarkup(){
                                 </span>
                               </div>
                               <div
-                                style={{ position: "absolute", left: "241.40px", top: "157.68px" }}
+                                style={{ position: "absolute", left: "41.40px", top: "157.68px" }}
                                 className="cls_011"
                               >
                                 <span className="cls_011">
@@ -308,7 +308,7 @@ rawMarkup(){
                                 </span>
                               </div>
                               <div
-                                style={{ position: "absolute", left: "241.40px", top: "169.14px" }}
+                                style={{ position: "absolute", left: "41.40px", top: "169.14px" }}
                                 className="cls_011"
                               >
                                 <span className="cls_011">
@@ -317,7 +317,7 @@ rawMarkup(){
                                 </span>
                               </div>
                               <div
-                                style={{ position: "absolute", left: "241.40px", top: "180.66px" }}
+                                style={{ position: "absolute", left: "41.40px", top: "180.66px" }}
                                 className="cls_011"
                               >
                                 <span className="cls_011">
@@ -326,13 +326,13 @@ rawMarkup(){
                                 </span>
                               </div>
                               <div
-                                style={{ position: "absolute", left: "241.40px", top: "201.90px" }}
+                                style={{ position: "absolute", left: "41.40px", top: "201.90px" }}
                                 className="cls_011"
                               >
                                 <span className="cls_011">BASIC APPLICATION INFORMATION:</span>
                               </div>
                               <div
-                                style={{ position: "absolute", left: "241.40px", top: "219.42px" }}
+                                style={{ position: "absolute", left: "41.40px", top: "219.42px" }}
                                 className="cls_008"
                               >
                                 <span className="cls_008">
@@ -345,7 +345,7 @@ rawMarkup(){
                                 </span>
                               </div>
                               <div
-                                style={{ position: "absolute", left: "262.99px", top: "229.80px" }}
+                                style={{ position: "absolute", left: "62.99px", top: "229.80px" }}
                                 className="cls_009"
                               >
                                 <span className="cls_009">
@@ -354,7 +354,7 @@ rawMarkup(){
                                 </span>
                               </div>
                               <div
-                                style={{ position: "absolute", left: "241.39px", top: "246.11px" }}
+                                style={{ position: "absolute", left: "41.39px", top: "246.11px" }}
                                 className="cls_008"
                               >
                                 <span className="cls_008">
@@ -369,7 +369,7 @@ rawMarkup(){
                                 </span>
                               </div>
                               <div
-                                style={{ position: "absolute", left: "262.99px", top: "256.50px" }}
+                                style={{ position: "absolute", left: "62.99px", top: "256.50px" }}
                                 className="cls_009"
                               >
                                 <span className="cls_009">
@@ -378,7 +378,7 @@ rawMarkup(){
                                 </span>
                               </div>
                               <div
-                                style={{ position: "absolute", left: "241.39px", top: "272.81px" }}
+                                style={{ position: "absolute", left: "41.39px", top: "272.81px" }}
                                 className="cls_008"
                               >
                                 <span className="cls_008">C. Certification.</span>
@@ -388,7 +388,7 @@ rawMarkup(){
                                 </span>
                               </div>
                               <div
-                                style={{ position: "absolute", left: "241.40px", top: "292.14px" }}
+                                style={{ position: "absolute", left: "41.40px", top: "292.14px" }}
                                 className="cls_011"
                               >
                                 <span className="cls_011">
@@ -396,13 +396,13 @@ rawMarkup(){
                                 </span>
                               </div>
                               <div
-                                style={{ position: "absolute", left: "241.40px", top: "309.66px" }}
+                                style={{ position: "absolute", left: "41.40px", top: "309.66px" }}
                                 className="cls_008"
                               >
                                 <span className="cls_008">D.</span>
                               </div>
                               <div
-                                style={{ position: "absolute", left: "263.02px", top: "309.66px" }}
+                                style={{ position: "absolute", left: "63.02px", top: "309.66px" }}
                                 className="cls_008"
                               >
                                 <span className="cls_008">Expanded Effluent Testing Data.</span>
@@ -413,7 +413,7 @@ rawMarkup(){
                                 </span>
                               </div>
                               <div
-                                style={{ position: "absolute", left: "263.01px", top: "320.04px" }}
+                                style={{ position: "absolute", left: "63.01px", top: "320.04px" }}
                                 className="cls_009"
                               >
                                 <span className="cls_009">
@@ -422,7 +422,7 @@ rawMarkup(){
                                 </span>
                               </div>
                               <div
-                                style={{ position: "absolute", left: "263.01px", top: "336.42px" }}
+                                style={{ position: "absolute", left: "63.01px", top: "336.42px" }}
                                 className="cls_009"
                               >
                                 <span className="cls_009">
@@ -430,7 +430,7 @@ rawMarkup(){
                                 </span>
                               </div>
                               <div
-                                style={{ position: "absolute", left: "263.01px", top: "352.73px" }}
+                                style={{ position: "absolute", left: "63.01px", top: "352.73px" }}
                                 className="cls_009"
                               >
                                 <span className="cls_009">
@@ -439,7 +439,7 @@ rawMarkup(){
                                 </span>
                               </div>
                               <div
-                                style={{ position: "absolute", left: "263.01px", top: "369.11px" }}
+                                style={{ position: "absolute", left: "63.01px", top: "369.11px" }}
                                 className="cls_009"
                               >
                                 <span className="cls_009">
@@ -448,13 +448,13 @@ rawMarkup(){
                                 </span>
                               </div>
                               <div
-                                style={{ position: "absolute", left: "241.41px", top: "388.37px" }}
+                                style={{ position: "absolute", left: "41.41px", top: "388.37px" }}
                                 className="cls_008"
                               >
                                 <span className="cls_008">E.</span>
                               </div>
                               <div
-                                style={{ position: "absolute", left: "263.02px", top: "388.37px" }}
+                                style={{ position: "absolute", left: "63.02px", top: "388.37px" }}
                                 className="cls_008"
                               >
                                 <span className="cls_008">Toxicity Testing Data.</span>
@@ -465,13 +465,13 @@ rawMarkup(){
                                 </span>
                               </div>
                               <div
-                                style={{ position: "absolute", left: "263.01px", top: "398.81px" }}
+                                style={{ position: "absolute", left: "63.01px", top: "398.81px" }}
                                 className="cls_009"
                               >
                                 <span className="cls_009">Testing Data):</span>
                               </div>
                               <div
-                                style={{ position: "absolute", left: "263.01px", top: "415.13px" }}
+                                style={{ position: "absolute", left: "63.01px", top: "415.13px" }}
                                 className="cls_009"
                               >
                                 <span className="cls_009">
@@ -479,7 +479,7 @@ rawMarkup(){
                                 </span>
                               </div>
                               <div
-                                style={{ position: "absolute", left: "263.01px", top: "431.51px" }}
+                                style={{ position: "absolute", left: "63.01px", top: "431.51px" }}
                                 className="cls_009"
                               >
                                 <span className="cls_009">
@@ -488,7 +488,7 @@ rawMarkup(){
                                 </span>
                               </div>
                               <div
-                                style={{ position: "absolute", left: "263.01px", top: "447.83px" }}
+                                style={{ position: "absolute", left: "63.01px", top: "447.83px" }}
                                 className="cls_009"
                               >
                                 <span className="cls_009">
@@ -497,13 +497,13 @@ rawMarkup(){
                                 </span>
                               </div>
                               <div
-                                style={{ position: "absolute", left: "241.41px", top: "467.15px" }}
+                                style={{ position: "absolute", left: "41.41px", top: "467.15px" }}
                                 className="cls_008"
                               >
                                 <span className="cls_008">F.</span>
                               </div>
                               <div
-                                style={{ position: "absolute", left: "262.99px", top: "467.15px" }}
+                                style={{ position: "absolute", left: "62.99px", top: "467.15px" }}
                                 className="cls_008"
                               >
                                 <span className="cls_008">
@@ -515,7 +515,7 @@ rawMarkup(){
                                 </span>
                               </div>
                               <div
-                                style={{ position: "absolute", left: "263.01px", top: "477.53px" }}
+                                style={{ position: "absolute", left: "63.01px", top: "477.53px" }}
                                 className="cls_009"
                               >
                                 <span className="cls_009">
@@ -524,7 +524,7 @@ rawMarkup(){
                                 </span>
                               </div>
                               <div
-                                style={{ position: "absolute", left: "263.01px", top: "487.90px" }}
+                                style={{ position: "absolute", left: "63.01px", top: "487.90px" }}
                                 className="cls_009"
                               >
                                 <span className="cls_009">
@@ -532,7 +532,7 @@ rawMarkup(){
                                 </span>
                               </div>
                               <div
-                                style={{ position: "absolute", left: "263.01px", top: "504.22px" }}
+                                style={{ position: "absolute", left: "63.01px", top: "504.22px" }}
                                 className="cls_009"
                               >
                                 <span className="cls_009">
@@ -541,7 +541,7 @@ rawMarkup(){
                                 </span>
                               </div>
                               <div
-                                style={{ position: "absolute", left: "277.41px", top: "514.60px" }}
+                                style={{ position: "absolute", left: "77.41px", top: "514.60px" }}
                                 className="cls_009"
                               >
                                 <span className="cls_009">
@@ -549,7 +549,7 @@ rawMarkup(){
                                 </span>
                               </div>
                               <div
-                                style={{ position: "absolute", left: "263.01px", top: "530.92px" }}
+                                style={{ position: "absolute", left: "63.01px", top: "530.92px" }}
                                 className="cls_009"
                               >
                                 <span className="cls_009">
@@ -557,7 +557,7 @@ rawMarkup(){
                                 </span>
                               </div>
                               <div
-                                style={{ position: "absolute", left: "277.41px", top: "547.23px" }}
+                                style={{ position: "absolute", left: "77.41px", top: "547.23px" }}
                                 className="cls_009"
                               >
                                 <span className="cls_009">
@@ -566,13 +566,13 @@ rawMarkup(){
                                 </span>
                               </div>
                               <div
-                                style={{ position: "absolute", left: "291.82px", top: "557.61px" }}
+                                style={{ position: "absolute", left: "91.82px", top: "557.61px" }}
                                 className="cls_009"
                               >
                                 <span className="cls_009">exclusions); or</span>
                               </div>
                               <div
-                                style={{ position: "absolute", left: "277.42px", top: "573.93px" }}
+                                style={{ position: "absolute", left: "77.42px", top: "573.93px" }}
                                 className="cls_009"
                               >
                                 <span className="cls_009">
@@ -581,7 +581,7 @@ rawMarkup(){
                                 </span>
                               </div>
                               <div
-                                style={{ position: "absolute", left: "291.82px", top: "584.30px" }}
+                                style={{ position: "absolute", left: "91.82px", top: "584.30px" }}
                                 className="cls_009"
                               >
                                 <span className="cls_009">
@@ -589,7 +589,7 @@ rawMarkup(){
                                 </span>
                               </div>
                               <div
-                                style={{ position: "absolute", left: "277.42px", top: "600.62px" }}
+                                style={{ position: "absolute", left: "77.42px", top: "600.62px" }}
                                 className="cls_009"
                               >
                                 <span className="cls_009">
@@ -597,13 +597,13 @@ rawMarkup(){
                                 </span>
                               </div>
                               <div
-                                style={{ position: "absolute", left: "241.42px", top: "622.94px" }}
+                                style={{ position: "absolute", left: "41.42px", top: "622.94px" }}
                                 className="cls_008"
                               >
                                 <span className="cls_008">G.</span>
                               </div>
                               <div
-                                style={{ position: "absolute", left: "263.03px", top: "622.94px" }}
+                                style={{ position: "absolute", left: "63.03px", top: "622.94px" }}
                                 className="cls_008"
                               >
                                 <span className="cls_008">Combined Sewer Systems.</span>
@@ -613,7 +613,7 @@ rawMarkup(){
                                 </span>
                               </div>
                               <div
-                                style={{ position: "absolute", left: "263.02px", top: "633.32px" }}
+                                style={{ position: "absolute", left: "63.02px", top: "633.32px" }}
                                 className="cls_009"
                               >
                                 <span className="cls_009">Systems).</span>
@@ -631,7 +631,7 @@ rawMarkup(){
                                 </span>
                               </div>
                               <div
-                                style={{ position: "absolute", left: "236.00px", top: "665.62px" }}
+                                style={{ position: "absolute", left: "36.00px", top: "665.62px" }}
                                 className="cls_005"
                               >
                                 <span className="cls_005">
