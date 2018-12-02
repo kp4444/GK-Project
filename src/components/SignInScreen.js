@@ -10,6 +10,8 @@ import Data from './Data';
 import Permits from './Permits';
 import form2a from './form2a';
 import Profile from './Profile';
+import files from './files';
+import maintenance from './maintenance';
 import { BrowserRouter, Route } from 'react-router-dom';
 
 
@@ -73,6 +75,8 @@ class SignInScreen extends React.Component {
       <Route path="/profile" component={Profile}/>
       <Route path="/permits" component={Permits}/>
       <Route path="/form2a" component={form2a} />
+      <Route path="/files" component={files} />
+      <Route path ="/maintenance" component={maintenance} />
 
 
       </div>
