@@ -8,6 +8,7 @@ import SignInScreen from './components/SignInScreen'
 import Home from './components/Home';
 import About from './components/About';
 
+
 import Profile from './components/Profile';
 import Data from './components/Data';
 import Navbar from './components/CustomNavbar';
@@ -121,6 +122,7 @@ class App extends Component {
   return (
     <BrowserRouter>
       <div className="wrap">
+
 
         <SignInScreen />
 
