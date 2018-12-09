@@ -15,6 +15,9 @@ import files from './files';
 import maintenance from './maintenance';
 import Dashboard from './dashboard';
 import dailyRounds from './dailyRounds';
+import workOrders from './workOrders';
+
+
 import { Link } from 'react-router-dom';
 import { StickyContainer, Sticky } from 'react-sticky';
 import { Col, Popover, Panel, Grid, Collapse, Well, ListGroup, ListGroupItem, Button, Nav, NavItem, OverlayTrigger, Row, Tab, Tabs } from 'react-bootstrap';
@@ -99,7 +102,7 @@ const popoverRightAsset = (
     <NavItem componentClass={Link} href="/data" to="/data">
       Maintenance Reports
     </NavItem>
-    <NavItem componentClass={Link} href="/data" to="/data">
+    <NavItem componentClass={Link} href="/workOrders" to="/workOrders">
       Maintenance Work Order
     </NavItem>
     <NavItem componentClass={Link} href="/data" to="/data">
@@ -247,6 +250,7 @@ class SignInScreen extends React.Component {
             <Route path="/files" component={files} />
             <Route path="/dailyRounds" component={dailyRounds} />
             <Route path ="/maintenance" component={maintenance} />
+            <Route path ="/workOrders" component={workOrders} />
 
             </Col>
         </Row>
