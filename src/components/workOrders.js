@@ -311,6 +311,9 @@ export default class workOrders extends Component {
 
           }
           console.log(chartData);
+          console.log(areaData);
+          areaData.sort();
+
 
 
 
@@ -538,6 +541,23 @@ handleBtnClick = () => {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       render() {
         return (
           <div>
@@ -559,9 +579,10 @@ handleBtnClick = () => {
             <Tabs activeKey={this.state.key} onSelect={this.handleSelect} defaultActiveKey={1} id="uncontrolled-tab-example">
 
 
-              <Tab eventKey={1} title="+ Edit Workorder">
+              <Tab eventKey={1} title="+ Workorders">
                 <Grid>
                 <Row>
+
                   <Col xs={8} md={8}>
                     <section className='display-item'>
                         <div className="wrapper">
@@ -571,6 +592,10 @@ handleBtnClick = () => {
 
 
                               return (
+                                <Grid>
+
+                                    <Row>
+                                    <Col xs={10} md={10}>
                                 <Table>
                                 <thead>
 
@@ -596,8 +621,9 @@ handleBtnClick = () => {
 
                                     </tr>
                                     </thead></Table>
-
-
+                                </Col>
+                                    </Row>
+                                    </Grid>
 
 
 
@@ -629,7 +655,7 @@ handleBtnClick = () => {
               <section className='add-item'>
                 <form onSubmit={this.handleSubmit}>
                       <h2>Maintenance Work Order</h2>
-                        
+
                       <hr></hr>
                       <Row>
                         <Col xs={3} md={3}>
