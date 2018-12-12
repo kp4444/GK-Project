@@ -15,6 +15,7 @@ import files from './files';
 import maintenance from './maintenance';
 import Dashboard from './dashboard';
 import dailyRounds from './dailyRounds';
+import dailySamples from './dailySamples';
 import workOrders from './workOrders';
 
 
@@ -71,7 +72,8 @@ const popoverRight = (
 
 const popoverRightSampling = (
   <Popover id="popover-positioned-right" title="Sampling Reports">
-    <strong>Sampling Reports</strong> <NavItem componentClass={Link} href="/data" to="/data">
+    <strong>Sampling Reports</strong>
+      <NavItem componentClass={Link} href="/dailySamples" to="/dailySamples">
       Daily Samples
     </NavItem>
     <NavItem componentClass={Link} href="/data" to="/data">
@@ -94,7 +96,7 @@ const popoverRightSampling = (
 );
 
 const popoverRightAsset = (
-  <Popover id="popover-positioned-right" title="Asset Manager">
+  <Popover id="popover-trigger-focus" title="Popover bottom">
     <strong>Operations & Maintenance</strong>
       <NavItem componentClass={Link} href="/dailyRounds" to="/dailyRounds">
       Daily Rounds
@@ -200,11 +202,11 @@ class SignInScreen extends React.Component {
 
 
 
-  <OverlayTrigger trigger="click" placement="right" overlay={popoverRightSampling}>
+  <OverlayTrigger rootClose="true" trigger="click" placement="right" overlay={popoverRightSampling}>
  <ListGroupItem>Sampling</ListGroupItem>
  </OverlayTrigger>
 
-    <OverlayTrigger trigger="click" placement="right" overlay={popoverRightAsset}>
+    <OverlayTrigger rootClose="true" trigger="click" placement="right" overlay={popoverRightAsset}>
     <ListGroupItem>Asset Manager</ListGroupItem>
     </OverlayTrigger>
 
@@ -228,6 +230,9 @@ class SignInScreen extends React.Component {
            </Collapse>
 
 </ListGroup>
+<Button bsStyle="info" onClick={() => firebase.auth().signOut()}>Sign Out
+
+</Button>
 
 
 
@@ -249,6 +254,7 @@ class SignInScreen extends React.Component {
             <Route path="/form2a" component={form2a} />
             <Route path="/files" component={files} />
             <Route path="/dailyRounds" component={dailyRounds} />
+            <Route path="/dailySamples" component={dailySamples} />
             <Route path ="/maintenance" component={maintenance} />
             <Route path ="/workOrders" component={workOrders} />
 

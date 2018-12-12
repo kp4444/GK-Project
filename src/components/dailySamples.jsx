@@ -9,34 +9,7 @@ import { fire } from '../fire';
 import ReactDataGrid from 'react-data-grid';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 
-const products = [];
 
-function addProducts(quantity) {
-
-
-
-
-
-  const startId = products.length;
-  for (let i = 0; i < quantity; i++) {
-    const id = startId + i;
-    products.push({
-      id: id,
-      name: 'Item name ' + id,
-      price: 2100 + i
-    });
-    console.log(products);
-  }
-}
-
-
-
-
-addProducts(10);
-
-const buttonTest = () => (
-  console.log("testing")
-);
 
 const styles = {
   topPad: {
@@ -56,12 +29,13 @@ const ColoredLine = ({ color }) => (
 
 
 
-export default class workOrders extends Component {
+export default class dailySamples extends Component {
 
 
     constructor() {
         super();
         this.state = {
+
           id: '',
           key: 1,
           idKey: '',
@@ -665,15 +639,15 @@ filterArea = () => {
         return (
           <div>
 
-            <Grid>
+            <Grid mdOffset={2} smOffset={2} xsOffset={2} >
               <Row>
                 <Row>
                   <Col xs={6} md={6}>
-                <h3>Maintenance Work Order</h3>
+                <h3>Daily Sample Reports</h3>
                 </Col>
                 <Col xs={6} md={6}>
                   <ButtonToolbar style={styles.topPad}>
-                <Button  onClick={() => this.fillEmpty()} eventKey={2} bsSize="large">+ Create New Maintenance Work Order</Button>
+                <Button  onClick={() => this.fillEmpty()} eventKey={2} bsSize="large">+ Create Sample Log</Button>
               </ButtonToolbar>
                 </Col>
                 </Row>
@@ -682,7 +656,7 @@ filterArea = () => {
             <Tabs activeKey={this.state.key} onSelect={this.handleSelect} defaultActiveKey={1} id="uncontrolled-tab-example">
 
 
-              <Tab eventKey={1} title="+ Workorders">
+              <Tab eventKey={1} title="+ Samples">
                 <Grid>
                   <Row>
                   <Button onClick={this.sortArea}>Sort Test</Button>
@@ -691,7 +665,7 @@ filterArea = () => {
             <Button onClick={this.sortDescriptionBack}>Sort Test</Button>
           <Button onClick={this.filterArea}>Filter</Button></Row>
                 <Row>
-                  
+
 
                   <Col xs={8} md={8}>
 
@@ -772,7 +746,7 @@ filterArea = () => {
                   <Col xs={6} md={6}>
               <section className='add-item'>
                 <form onSubmit={this.handleSubmit}>
-                      <h2>Maintenance Work Order</h2>
+                      <h2>Daily Sample Log City of Winslow</h2>
 
                       <hr></hr>
                       <Row>
