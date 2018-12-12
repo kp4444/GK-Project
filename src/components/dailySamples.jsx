@@ -427,7 +427,7 @@ export default class dailySamples extends Component {
         endDate: snapshot.child('endDate').val(),
         description: snapshot.child('description').val(),
         id: snapshot.child('id').val(),
-        key: 2,
+        key: 3,
 
 
         sampleDate: snapshot.child('sampleDate').val(),
@@ -731,7 +731,7 @@ render() {
           <Row>
 
 
-            <Col xs={5} md={5}>
+            <Col xs={10} md={10}>
 
 
               <Table striped bordered condensed hover>
@@ -767,15 +767,6 @@ render() {
 
               </thead>
             </Table>
-
-
-
-
-
-
-
-
-              
 
 
 
@@ -960,6 +951,185 @@ render() {
 
 
                 <button>Add sample</button>
+              </form>
+        </section>
+        
+        </Col>
+        </Row>
+
+        </Grid>
+      </Tab>
+      <Tab eventKey={3} >
+        <Grid>
+          <Row>
+            <Col xs={10} md={10}>
+        <section className='add-item'>
+          <form onSubmit={this.handleSubmit}>
+            <Row>
+              <Col xs={4} sm={4} md={4}>
+                <h2>Daily Sample Log</h2>
+                </Col>
+                <Col xs={6} sm={6} md={6}>
+                <input required="true" type="text" name="operator" placeholder="Operator Name?" onChange={this.handleChange} value={this.state.operator} />
+                </Col>
+                </Row>
+                <hr></hr>
+                <Row>
+                  <Col xs={8} sm={8} md={8}>
+
+                    <Table striped bordered condensed hover>
+                    <thead>
+                    <tr>
+                    <th>Sample Date</th>
+                    <th>Sample Time</th>
+                    <th>Sample Location</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+
+                    <td><input required="true" type="date" name="sampleDate" placeholder="Date of Sample" onChange={this.handleChange} value={this.state.sampleDate} />
+                    </td>
+                    <td><input required="true" type="time" name="sampleTime" placeholder="Time of Sample" onChange={this.handleChange} value={this.state.sampleTime} /></td>
+                    <td><ButtonToolbar>
+                      <DropdownButton title={this.state.sampleLocation} id="dropdown-size-medium">
+                        <MenuItem eventKey="1" onSelect={this.sampleInfluent}>Influent</MenuItem>
+                        <MenuItem eventKey="2" onSelect={this.sampleEffluent}>Effluent</MenuItem>
+                      </DropdownButton>
+                    </ButtonToolbar></td>
+                    </tr>
+
+                    </tbody>
+                    </Table>
+
+
+
+                </Col>
+
+
+
+
+                  </Row>
+                  <hr></hr>
+                    <Row>
+                      <Col xs={5} md={5}>
+                        <strong>Temperature (C)</strong>
+                        <Table striped bordered condensed hover>
+                      <thead>
+                        <tr>
+
+                          <th>Sample Time</th>
+                          <th>Analysis Time</th>
+                          <th>Results (C)</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+
+                          <td><input type="time" name="temperatureSamplingTime" placeholder="Sampling Time" onChange={this.handleChange} value={this.state.temperatureSamplingTime} />
+                          </td>
+                          <td><input type="time" name="temperatureAnalysisTime" placeholder="Analysis Time" onChange={this.handleChange} value={this.state.temperatureAnalysisTime} /></td>
+                          <td><input type="number" name="temperatureResult" placeholder="Result" onChange={this.handleChange} value={this.state.temperatureResult} /></td>
+                        </tr>
+
+
+                      </tbody>
+                    </Table>
+                    </Col>
+                    <Col xs={5} md={5} xsOffset={1} smOffset={1} mdOffset={1}>
+                      <strong>Conductivity (M/CM)</strong>
+                      <Table striped bordered condensed hover>
+                    <thead>
+                      <tr>
+
+                        <th>Sample Time</th>
+                        <th>Analysis Time</th>
+                        <th>Results (M/CM)</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+
+                        <td><input type="time" name="conductivitySamplingTime" placeholder="Sampling Time" onChange={this.handleChange} value={this.state.conductivitySamplingTime} />
+                        </td>
+                        <td><input type="time" name="conductivityAnalysisTime" placeholder="Analysis Time" onChange={this.handleChange} value={this.state.conductivityAnalysisTime} /></td>
+                        <td><input type="number" name="conductivityResult" placeholder="Result" onChange={this.handleChange} value={this.state.conductivityResult} /></td>
+                      </tr>
+
+
+                    </tbody>
+                  </Table>
+                  </Col>
+
+                      </Row>
+
+                      <hr></hr>
+                        <Row>
+                          <Col xs={5} md={5}>
+                            <strong>pH</strong>
+                            <Table striped bordered condensed hover>
+                          <thead>
+                            <tr>
+
+                              <th>Sample Time</th>
+                              <th>Analysis Time</th>
+                              <th>Results</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+
+                              <td><input type="time" name="pHSamplingTime" placeholder="Sampling Time" onChange={this.handleChange} value={this.state.pHSamplingTime} />
+                              </td>
+                              <td><input type="time" name="pHAnalysisTime" placeholder="Analysis Time" onChange={this.handleChange} value={this.state.pHAnalysisTime} /></td>
+                              <td><input type="number" name="pHResult" placeholder="Result" onChange={this.handleChange} value={this.state.pHResult} /></td>
+                            </tr>
+
+
+                          </tbody>
+                        </Table>
+                        </Col>
+                        <Col xs={5} md={5} xsOffset={1} smOffset={1} mdOffset={1}>
+                          <strong>DO (mg/L)</strong>
+                          <Table striped bordered condensed hover>
+                        <thead>
+                          <tr>
+
+                            <th>Sample Time</th>
+                            <th>Analysis Time</th>
+                            <th>Results (mg/L)</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+
+                            <td><input type="time" name="DOSamplingTime" placeholder="Analysis Time" onChange={this.handleChange} value={this.state.DOSamplingTime} />
+                            </td>
+                            <td><input type="time" name="DOAnalysisTime" placeholder="Sampling Time" onChange={this.handleChange} value={this.state.DOAnalysisTime} /></td>
+                            <td><input type="number" name="DOResult" placeholder="Result" onChange={this.handleChange} value={this.state.DOResult} /></td>
+                          </tr>
+
+
+                        </tbody>
+                      </Table>
+                      </Col>
+
+                          </Row>
+
+
+
+                      <hr></hr>
+
+
+
+
+
+
+
+
+
+
+
               </form>
         </section>
         <button onClick={this.writeData}>Overwrite Data</button>
