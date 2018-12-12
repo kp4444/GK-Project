@@ -53,6 +53,16 @@ export default class dailySamples extends Component {
           DOSamplingTime: '',
           DOAnalysisTime: '',
           DOResult: '',
+          nitrateSamplingTime: '',
+          nitrateAnalysisTime: '',
+          nitrateResult: '',
+          nitriteSamplingTime: '',
+          nitriteAnalysisTime: '',
+          nitriteResult: '',
+          ammoniaSamplingTime: '',
+          ammoniaAnalysisTime: '',
+          ammoniaResult: '',
+          totalInorganicNitrogen: '',
 
           id: '',
           key: 1,
@@ -130,6 +140,17 @@ export default class dailySamples extends Component {
           DOAnalysisTime: this.state.DOAnalysisTime,
           DOResult: this.state.DOResult,
 
+          nitrateSamplingTime: this.state.nitrateSamplingTime,
+          nitrateAnalysisTime: this.state.nitrateAnalysisTime,
+          nitrateResult: this.state.nitrateResult,
+          nitriteSamplingTime: this.state.nitriteSamplingTime,
+          nitriteAnalysisTime: this.state.nitriteAnalysisTime,
+          nitriteResult: this.state.nitriteResult,
+          ammoniaSamplingTime: this.state.ammoniaSamplingTime,
+          ammoniaAnalysisTime: this.state.ammoniaAnalysisTime,
+          ammoniaResult: this.state.ammoniaResult,
+
+
 
           checkbox: '<button id="buttonTest" onClick={buttonTest}>Test<button>',
         }
@@ -158,6 +179,17 @@ export default class dailySamples extends Component {
           DOSamplingTime: '',
           DOAnalysisTime: '',
           DOResult: '',
+
+          nitrateSamplingTime: '',
+          nitrateAnalysisTime: '',
+          nitrateResult: '',
+          nitriteSamplingTime: '',
+          nitriteAnalysisTime: '',
+          nitriteResult: '',
+          ammoniaSamplingTime: '',
+          ammoniaAnalysisTime: '',
+          ammoniaResult: '',
+          totalInorganicNitrogen: '',
 
 
 
@@ -352,6 +384,17 @@ export default class dailySamples extends Component {
               DOAnalysisTime: orders[order].DOAnalysisTime,
               DOResult: orders[order].DOResult,
 
+              nitrateSamplingTime: orders[order].nitrateSamplingTime,
+              nitrateAnalysisTime: orders[order].nitrateAnalysisTime,
+              nitrateResult: orders[order].nitrateResult,
+              nitriteSamplingTime: orders[order].nitriteSamplingTime,
+              nitriteAnalysisTime: orders[order].nitriteAnalysisTime,
+              nitriteResult: orders[order].nitriteResult,
+              ammoniaSamplingTime: orders[order].ammoniaSamplingTime,
+              ammoniaAnalysisTime: orders[order].ammoniaAnalysisTime,
+              ammoniaResult: orders[order].ammoniaResult,
+
+
 
 
 
@@ -359,6 +402,7 @@ export default class dailySamples extends Component {
           }
           this.setState({
             orders: newState,
+            totalInorganicNitrogen: this.state.ammoniaResult + this.state.nitriteResult + this.state.nitrateResult,
           });
 
 
@@ -417,6 +461,17 @@ export default class dailySamples extends Component {
           DOAnalysisTime: orders[order].DOAnalysisTime,
           DOResult: orders[order].DOResult,
 
+          nitrateSamplingTime: orders[order].nitrateSamplingTime,
+          nitrateAnalysisTime: orders[order].nitrateAnalysisTime,
+          nitrateResult: orders[order].nitrateResult,
+          nitriteSamplingTime: orders[order].nitriteSamplingTime,
+          nitriteAnalysisTime: orders[order].nitriteAnalysisTime,
+          nitriteResult: orders[order].nitriteResult,
+          ammoniaSamplingTime: orders[order].ammoniaSamplingTime,
+          ammoniaAnalysisTime: orders[order].ammoniaAnalysisTime,
+          ammoniaResult: orders[order].ammoniaResult,
+
+
 
         });
       }
@@ -427,7 +482,7 @@ export default class dailySamples extends Component {
         endDate: snapshot.child('endDate').val(),
         description: snapshot.child('description').val(),
         id: snapshot.child('id').val(),
-        key: 3,
+        key: 2,
 
 
         sampleDate: snapshot.child('sampleDate').val(),
@@ -442,12 +497,23 @@ export default class dailySamples extends Component {
         conductivityAnalysisTime: snapshot.child('conductivityAnalysisTime').val(),
         conductivityResult: snapshot.child('conductivityResult').val(),
 
-        pHSamplingTime: snapshot.child('sampleLocation').val(),
-        pHAnalysisTime: snapshot.child('sampleLocation').val(),
-        pHResult: snapshot.child('sampleLocation').val(),
-        DOSamplingTime: snapshot.child('sampleLocation').val(),
-        DOAnalysisTime: snapshot.child('sampleLocation').val(),
-        DOResult: snapshot.child('sampleLocation').val(),
+        pHSamplingTime: snapshot.child('pHSamplingTime').val(),
+        pHAnalysisTime: snapshot.child('pHAnalysisTime').val(),
+        pHResult: snapshot.child('pHResult').val(),
+        DOSamplingTime: snapshot.child('DOSamplingTime').val(),
+        DOAnalysisTime: snapshot.child('DOAnalysisTime').val(),
+        DOResult: snapshot.child('DOResult').val(),
+
+        nitrateSamplingTime: snapshot.child('nitrateSamplingTime').val(),
+        nitrateAnalysisTime: snapshot.child('nitrateAnalysisTime').val(),
+        nitrateResult: snapshot.child('nitrateResult').val(),
+        nitriteSamplingTime: snapshot.child('nitriteSamplingTime').val(),
+        nitriteAnalysisTime: snapshot.child('nitriteAnalysisTime').val(),
+        nitriteResult: snapshot.child('nitriteResult').val(),
+        ammoniaSamplingTime: snapshot.child('ammoniaSamplingTime').val(),
+        ammoniaAnalysisTime: snapshot.child('ammoniaAnalysisTime').val(),
+        ammoniaResult: snapshot.child('ammoniaResult').val(),
+
 
 
 
@@ -501,6 +567,17 @@ export default class dailySamples extends Component {
         DOAnalysisTime: orders[order].DOAnalysisTime,
         DOResult: orders[order].DOResult,
 
+        nitrateSamplingTime: orders[order].nitrateSamplingTime,
+        nitrateAnalysisTime: orders[order].nitrateAnalysisTime,
+        nitrateResult: orders[order].nitrateResult,
+        nitriteSamplingTime: orders[order].nitriteSamplingTime,
+        nitriteAnalysisTime: orders[order].nitriteAnalysisTime,
+        nitriteResult: orders[order].nitriteResult,
+        ammoniaSamplingTime: orders[order].ammoniaSamplingTime,
+        ammoniaAnalysisTime: orders[order].ammoniaAnalysisTime,
+        ammoniaResult: orders[order].ammoniaResult,
+
+
       });
     }
     this.setState({
@@ -533,6 +610,17 @@ export default class dailySamples extends Component {
       DOSamplingTime: '',
       DOAnalysisTime: '',
       DOResult: '',
+
+      nitrateSamplingTime: '',
+      nitrateAnalysisTime: '',
+      nitrateResult: '',
+      nitriteSamplingTime: '',
+      nitriteAnalysisTime: '',
+      nitriteResult: '',
+      ammoniaSamplingTime: '',
+      ammoniaAnalysisTime: '',
+      ammoniaResult: '',
+
 
 
 
@@ -599,6 +687,17 @@ writeData = (e) => {
     DOAnalysisTime: this.state.DOAnalysisTime,
     DOResult: this.state.DOResult,
 
+    nitrateSamplingTime: this.state.nitrateSamplingTime,
+    nitrateAnalysisTime: this.state.nitrateAnalysisTime,
+    nitrateResult: this.state.nitrateResult,
+    nitriteSamplingTime: this.state.nitriteSamplingTime,
+    nitriteAnalysisTime: this.state.nitriteAnalysisTime,
+    nitriteResult: this.state.nitriteResult,
+    ammoniaSamplingTime: this.state.ammoniaSamplingTime,
+    ammoniaAnalysisTime: this.state.ammoniaAnalysisTime,
+    ammoniaResult: this.state.ammoniaResult,
+
+
 
     checkbox: '<button id="buttonTest" onClick={buttonTest}>Test<button>',
   }
@@ -619,6 +718,17 @@ writeData = (e) => {
   orderID.child("DOSamplingTime").set(this.state.DOSamplingTime);
   orderID.child("DOAnalysisTime").set(this.state.DOAnalysisTime);
   orderID.child("DOResult").set(this.state.DOResult);
+  orderID.child("nitrateSamplingTime").set(this.state.nitrateSamplingTime);
+  orderID.child("nitrateAnalysisTime").set(this.state.nitrateAnalysisTime);
+  orderID.child("nitrateResult").set(this.state.nitrateResult);
+  orderID.child("nitriteSamplingTime").set(this.state.nitriteSamplingTime);
+  orderID.child("nitriteAnalysisTime").set(this.state.nitriteAnalysisTime);
+  orderID.child("nitriteResult").set(this.state.nitriteResult);
+  orderID.child("ammoniaSamplingTime").set(this.state.ammoniaSamplingTime);
+  orderID.child("ammoniaResult").set(this.state.ammoniaResult);
+  orderID.child("ammoniaResult").set(this.state.ammoniaResult);
+
+
 
 
 
@@ -924,9 +1034,9 @@ render() {
                         <tbody>
                           <tr>
 
-                            <td><input type="time" name="DOSamplingTime" placeholder="Analysis Time" onChange={this.handleChange} value={this.state.DOSamplingTime} />
+                            <td><input type="time" name="DOSamplingTime" placeholder="Sampling Time" onChange={this.handleChange} value={this.state.DOSamplingTime} />
                             </td>
-                            <td><input type="time" name="DOAnalysisTime" placeholder="Sampling Time" onChange={this.handleChange} value={this.state.DOAnalysisTime} /></td>
+                            <td><input type="time" name="DOAnalysisTime" placeholder="Analysis Time" onChange={this.handleChange} value={this.state.DOAnalysisTime} /></td>
                             <td><input type="number" name="DOResult" placeholder="Result" onChange={this.handleChange} value={this.state.DOResult} /></td>
                           </tr>
 
@@ -936,6 +1046,111 @@ render() {
                       </Col>
 
                           </Row>
+                          <hr></hr>
+                            <Row>
+                              <Col xs={5} md={5}><h3>Nitrogen Samples</h3></Col>
+                            </Row>
+                              <Row>
+
+                              <Col xs={5} md={5}>
+
+                                <strong>Nitrate (mg/L)</strong>
+                                <Table striped bordered condensed hover>
+                              <thead>
+                                <tr>
+
+                                  <th>Sample Time</th>
+                                  <th>Analysis Time</th>
+                                  <th>Results (mg/L)</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+
+                                  <td><input type="time" name="nitrateSamplingTime" placeholder="Sampling Time" onChange={this.handleChange} value={this.state.nitrateSamplingTime} />
+                                  </td>
+                                  <td><input type="time" name="nitriteAnalysisTime" placeholder="Analysis Time" onChange={this.handleChange} value={this.state.nitriteAnalysisTime} /></td>
+                                  <td><input type="number" name="nitrateResult" placeholder="Result" onChange={this.handleChange} value={this.state.nitrateResult} /></td>
+                                </tr>
+
+
+                              </tbody>
+                            </Table>
+                            </Col>
+                            <Col xs={5} md={5} xsOffset={1} smOffset={1} mdOffset={1}>
+                              <strong>Nitrite (mg/L)</strong>
+                              <Table striped bordered condensed hover>
+                            <thead>
+                              <tr>
+
+                                <th>Sample Time</th>
+                                <th>Analysis Time</th>
+                                <th>Results (mg/L)</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+
+                                <td><input type="time" name="nitriteSamplingTime" placeholder="Sampling Time" onChange={this.handleChange} value={this.state.nitriteAnalysisTime} />
+                                </td>
+                                <td><input type="time" name="nitriteAnalysisTime" placeholder="Analysis Time" onChange={this.handleChange} value={this.state.nitriteAnalysisTime} /></td>
+                                <td><input type="number" name="nitriteResult" placeholder="Result" onChange={this.handleChange} value={this.state.nitriteResult} /></td>
+                              </tr>
+
+
+                            </tbody>
+                          </Table>
+                          </Col>
+
+                              </Row>
+                              <Row>
+                                <Col xs={5} md={5}>
+                                  <strong>Ammonia (mg/L)</strong>
+                                  <Table striped bordered condensed hover>
+                                <thead>
+                                  <tr>
+
+                                    <th>Sample Time</th>
+                                    <th>Analysis Time</th>
+                                    <th>Results (mg/L)</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+
+                                    <td><input type="time" name="ammoniaSamplingTime" placeholder="Sampling Time" onChange={this.handleChange} value={this.state.ammoniaSamplingTime} />
+                                    </td>
+                                    <td><input type="time" name="ammoniaAnalysisTime" placeholder="Analysis Time" onChange={this.handleChange} value={this.state.ammoniaAnalysisTime} /></td>
+                                    <td><input type="number" name="ammoniaResult" placeholder="Result" onChange={this.handleChange} value={this.state.ammoniaResult} /></td>
+                                  </tr>
+
+
+                                </tbody>
+                              </Table>
+                              </Col>
+                              <Col xs={5} md={5} xsOffset={1} smOffset={1} mdOffset={1}>
+                                <strong>Total Inorganic Nitrogen (mg/L)</strong>
+                                <Table striped bordered condensed hover>
+                              <thead>
+                                <tr>
+
+
+                                  <th>Results (mg/L)</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+
+
+                                  <td> {this.state.totalInorganicNitrogen}</td>
+                                </tr>
+
+
+                              </tbody>
+                            </Table>
+                            </Col>
+
+                                </Row>
 
 
 
@@ -951,185 +1166,6 @@ render() {
 
 
                 <button>Add sample</button>
-              </form>
-        </section>
-        
-        </Col>
-        </Row>
-
-        </Grid>
-      </Tab>
-      <Tab eventKey={3} >
-        <Grid>
-          <Row>
-            <Col xs={10} md={10}>
-        <section className='add-item'>
-          <form onSubmit={this.handleSubmit}>
-            <Row>
-              <Col xs={4} sm={4} md={4}>
-                <h2>Daily Sample Log</h2>
-                </Col>
-                <Col xs={6} sm={6} md={6}>
-                <input required="true" type="text" name="operator" placeholder="Operator Name?" onChange={this.handleChange} value={this.state.operator} />
-                </Col>
-                </Row>
-                <hr></hr>
-                <Row>
-                  <Col xs={8} sm={8} md={8}>
-
-                    <Table striped bordered condensed hover>
-                    <thead>
-                    <tr>
-                    <th>Sample Date</th>
-                    <th>Sample Time</th>
-                    <th>Sample Location</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-
-                    <td><input required="true" type="date" name="sampleDate" placeholder="Date of Sample" onChange={this.handleChange} value={this.state.sampleDate} />
-                    </td>
-                    <td><input required="true" type="time" name="sampleTime" placeholder="Time of Sample" onChange={this.handleChange} value={this.state.sampleTime} /></td>
-                    <td><ButtonToolbar>
-                      <DropdownButton title={this.state.sampleLocation} id="dropdown-size-medium">
-                        <MenuItem eventKey="1" onSelect={this.sampleInfluent}>Influent</MenuItem>
-                        <MenuItem eventKey="2" onSelect={this.sampleEffluent}>Effluent</MenuItem>
-                      </DropdownButton>
-                    </ButtonToolbar></td>
-                    </tr>
-
-                    </tbody>
-                    </Table>
-
-
-
-                </Col>
-
-
-
-
-                  </Row>
-                  <hr></hr>
-                    <Row>
-                      <Col xs={5} md={5}>
-                        <strong>Temperature (C)</strong>
-                        <Table striped bordered condensed hover>
-                      <thead>
-                        <tr>
-
-                          <th>Sample Time</th>
-                          <th>Analysis Time</th>
-                          <th>Results (C)</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-
-                          <td><input type="time" name="temperatureSamplingTime" placeholder="Sampling Time" onChange={this.handleChange} value={this.state.temperatureSamplingTime} />
-                          </td>
-                          <td><input type="time" name="temperatureAnalysisTime" placeholder="Analysis Time" onChange={this.handleChange} value={this.state.temperatureAnalysisTime} /></td>
-                          <td><input type="number" name="temperatureResult" placeholder="Result" onChange={this.handleChange} value={this.state.temperatureResult} /></td>
-                        </tr>
-
-
-                      </tbody>
-                    </Table>
-                    </Col>
-                    <Col xs={5} md={5} xsOffset={1} smOffset={1} mdOffset={1}>
-                      <strong>Conductivity (M/CM)</strong>
-                      <Table striped bordered condensed hover>
-                    <thead>
-                      <tr>
-
-                        <th>Sample Time</th>
-                        <th>Analysis Time</th>
-                        <th>Results (M/CM)</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-
-                        <td><input type="time" name="conductivitySamplingTime" placeholder="Sampling Time" onChange={this.handleChange} value={this.state.conductivitySamplingTime} />
-                        </td>
-                        <td><input type="time" name="conductivityAnalysisTime" placeholder="Analysis Time" onChange={this.handleChange} value={this.state.conductivityAnalysisTime} /></td>
-                        <td><input type="number" name="conductivityResult" placeholder="Result" onChange={this.handleChange} value={this.state.conductivityResult} /></td>
-                      </tr>
-
-
-                    </tbody>
-                  </Table>
-                  </Col>
-
-                      </Row>
-
-                      <hr></hr>
-                        <Row>
-                          <Col xs={5} md={5}>
-                            <strong>pH</strong>
-                            <Table striped bordered condensed hover>
-                          <thead>
-                            <tr>
-
-                              <th>Sample Time</th>
-                              <th>Analysis Time</th>
-                              <th>Results</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-
-                              <td><input type="time" name="pHSamplingTime" placeholder="Sampling Time" onChange={this.handleChange} value={this.state.pHSamplingTime} />
-                              </td>
-                              <td><input type="time" name="pHAnalysisTime" placeholder="Analysis Time" onChange={this.handleChange} value={this.state.pHAnalysisTime} /></td>
-                              <td><input type="number" name="pHResult" placeholder="Result" onChange={this.handleChange} value={this.state.pHResult} /></td>
-                            </tr>
-
-
-                          </tbody>
-                        </Table>
-                        </Col>
-                        <Col xs={5} md={5} xsOffset={1} smOffset={1} mdOffset={1}>
-                          <strong>DO (mg/L)</strong>
-                          <Table striped bordered condensed hover>
-                        <thead>
-                          <tr>
-
-                            <th>Sample Time</th>
-                            <th>Analysis Time</th>
-                            <th>Results (mg/L)</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-
-                            <td><input type="time" name="DOSamplingTime" placeholder="Analysis Time" onChange={this.handleChange} value={this.state.DOSamplingTime} />
-                            </td>
-                            <td><input type="time" name="DOAnalysisTime" placeholder="Sampling Time" onChange={this.handleChange} value={this.state.DOAnalysisTime} /></td>
-                            <td><input type="number" name="DOResult" placeholder="Result" onChange={this.handleChange} value={this.state.DOResult} /></td>
-                          </tr>
-
-
-                        </tbody>
-                      </Table>
-                      </Col>
-
-                          </Row>
-
-
-
-                      <hr></hr>
-
-
-
-
-
-
-
-
-
-
-
               </form>
         </section>
         <button onClick={this.writeData}>Overwrite Data</button>
