@@ -14,7 +14,11 @@ return (
   </div>
       );
   }
+<<<<<<< HEAD
   
+=======
+
+>>>>>>> gregbranch1
   function FlexColumn(props) {
       return (
   <div style={{ display: "flex", flexFlow: "column nowrap", flex: "1 1 auto" }}>
@@ -27,6 +31,7 @@ return (
 export default class form2a extends Component {
 
   
+
 
 
 
@@ -202,9 +207,9 @@ rawMarkup(){
           </Col>
           </Row>
           </Grid>
-          <div 
+          <div
                     style={{ position: "relative"}}>
-                    <div 
+                    <div
                     style={{ position: "absolute", left: 0, top: 0}}>
 
 <PDFExport
@@ -214,7 +219,7 @@ rawMarkup(){
 
 
                     {/* For details see:
-                    http://www.telerik.com/kendo-react-ui/components/drawing/drawing-dom/#toc-dimensions-and-css-units */}                               
+                    http://www.telerik.com/kendo-react-ui/components/drawing/drawing-dom/#toc-dimensions-and-css-units */}
                           <div style={{  width: "612px", height: "792px" }}>
                             <div style={{ position: "absolute", left: 0, top: 0 }}>
                               <img
@@ -286,7 +291,7 @@ rawMarkup(){
                               >
                                 <span className="cls_011">
                                   Form 2A has been developed in a modular format and consists of a
-                                  "Basic Application Information" packet 
+                                  "Basic Application Information" packet
                                 </span>
                               </div>
                               <div
@@ -295,7 +300,7 @@ rawMarkup(){
                               >
                                 <span className="cls_011">
                                   and a "Supplemental Application Information" packet. The Basic
-                                  Application Information packet is divided  
+                                  Application Information packet is divided
                                 </span>
                               </div>
                               <div
@@ -304,7 +309,7 @@ rawMarkup(){
                               >
                                 <span className="cls_011">
                                   into two parts. All applicants must complete Parts A and C. Applicants
-                                  with a design flow greater than or   
+                                  with a design flow greater than or
                                 </span>
                               </div>
                               <div
@@ -313,7 +318,7 @@ rawMarkup(){
                               >
                                 <span className="cls_011">
                                   equal to 0.1 mgd must also complete Part B. Some applicants must also
-                                  complete the Supplemental 
+                                  complete the Supplemental
                                 </span>
                               </div>
                               <div
@@ -654,14 +659,12 @@ rawMarkup(){
                             </div>
 
 
-                    
                 </PDFExport>
                 </div>
               </div></FlexRow>
 
 
 
-              
                </Tab.Pane>
 
                 <Tab.Pane eventKey="second">
@@ -704,10 +707,10 @@ rawMarkup(){
         </Tab.Container>
                                 
 
+
       </Tab>
       <Tab eventKey={2} title="Section B">
       Tab 3 content
-        
       </Tab>
       <Tab eventKey={4} title="Section D">
         Tab 3 content

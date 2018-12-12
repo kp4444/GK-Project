@@ -17,6 +17,7 @@ export default class Home extends Component {
   render() {
     return (
       <Grid>
+        <Row>
         <Jumbotron>
           <h2>Welcome to City of Winslow</h2>
           <p>Wastewater System Overview</p>
@@ -24,7 +25,7 @@ export default class Home extends Component {
             <Button bsStyle="primary">Your Data</Button>
           </Link>
         </Jumbotron>
-
+        </Row>
 
 
 
