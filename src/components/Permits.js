@@ -3,10 +3,30 @@ import { Grid, Row, Button, Col, Tabs, Image, Nav, NavDropdown, NavItem, Tab, Me
 import './News.css';
 import { fire } from '../fire';
 import form2a from './form2a';
+import backgroundPhoto2 from './background02.jpg';
+import backgroundPhoto3 from './background03.jpg';
+import backgroundPhoto4 from './background04.jpg';
+import backgroundPhoto5 from './background05.jpg';
+import backgroundPhoto6 from './background06.jpg';
+import backgroundPhoto7 from './background07.jpg';
 import { Link, Route } from 'react-router-dom';
 import './form2a.css';
 
-
+function FlexRow(props) {
+  return (
+    <div style={{ display: "flex", flexFlow: "row nowrap", flex: "1 1 auto" }}>
+                {props.children}
+    </div>
+        );
+    }
+    
+    function FlexColumn(props) {
+        return (
+    <div style={{ display: "flex", flexFlow: "column nowrap", flex: "1 1 auto" }}>
+                {props.children}
+    </div>
+        );
+    }
 
 
 export default class Permits extends Component {
@@ -139,9 +159,14 @@ export default class Permits extends Component {
         <div>
         <meta httpEquiv="Content-Type" content="text/html; charset=UTF-8" />
         <style type="text/css" dangerouslySetInnerHTML={{__html: "\n<!--\nspan.cls_002{font-family:Times,serif;font-size:20.0px;color:rgb(0,0,0);font-weight:bold;font-style:normal;text-decoration: none}\ndiv.cls_002{font-family:Times,serif;font-size:20.0px;color:rgb(0,0,0);font-weight:bold;font-style:normal;text-decoration: none}\nspan.cls_003{font-family:Times,serif;font-size:12.1px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}\ndiv.cls_003{font-family:Times,serif;font-size:12.1px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}\nspan.cls_006{font-family:Arial,serif;font-size:8.0px;color:rgb(0,0,0);font-weight:bold;font-style:normal;text-decoration: none}\ndiv.cls_006{font-family:Arial,serif;font-size:8.0px;color:rgb(0,0,0);font-weight:bold;font-style:normal;text-decoration: none}\nspan.cls_007{font-family:Arial,serif;font-size:7.1px;color:rgb(0,0,0);font-weight:normal;font-style:italic;text-decoration: none}\ndiv.cls_007{font-family:Arial,serif;font-size:7.1px;color:rgb(0,0,0);font-weight:normal;font-style:italic;text-decoration: none}\nspan.cls_008{font-family:Arial,serif;font-size:9.1px;color:rgb(0,0,0);font-weight:bold;font-style:normal;text-decoration: none}\ndiv.cls_008{font-family:Arial,serif;font-size:9.1px;color:rgb(0,0,0);font-weight:bold;font-style:normal;text-decoration: none}\nspan.cls_010{font-family:Arial,serif;font-size:16.1px;color:rgb(0,0,0);font-weight:bold;font-style:normal;text-decoration: none}\ndiv.cls_010{font-family:Arial,serif;font-size:16.1px;color:rgb(0,0,0);font-weight:bold;font-style:normal;text-decoration: none}\nspan.cls_011{font-family:Arial,serif;font-size:10.1px;color:rgb(0,0,0);font-weight:bold;font-style:normal;text-decoration: none}\ndiv.cls_011{font-family:Arial,serif;font-size:10.1px;color:rgb(0,0,0);font-weight:bold;font-style:normal;text-decoration: none}\nspan.cls_009{font-family:Arial,serif;font-size:9.1px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}\ndiv.cls_009{font-family:Arial,serif;font-size:9.1px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}\nspan.cls_024{font-family:Arial,serif;font-size:9.1px;color:rgb(0,0,0);font-weight:bold;font-style:normal;text-decoration: underline}\ndiv.cls_024{font-family:Arial,serif;font-size:9.1px;color:rgb(0,0,0);font-weight:bold;font-style:normal;text-decoration: none}\nspan.cls_013{font-family:Arial,serif;font-size:12.1px;color:rgb(0,0,0);font-weight:bold;font-style:normal;text-decoration: none}\ndiv.cls_013{font-family:Arial,serif;font-size:12.1px;color:rgb(0,0,0);font-weight:bold;font-style:normal;text-decoration: none}\nspan.cls_005{font-family:Arial,serif;font-size:8.0px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}\ndiv.cls_005{font-family:Arial,serif;font-size:8.0px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}\nspan.cls_025{font-family:Arial,serif;font-size:8.0px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: underline}\ndiv.cls_025{font-family:Arial,serif;font-size:8.0px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}\nspan.cls_015{font-family:Arial,serif;font-size:7.1px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}\ndiv.cls_015{font-family:Arial,serif;font-size:7.1px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}\nspan.cls_016{font-family:Arial,serif;font-size:5.0px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}\ndiv.cls_016{font-family:Arial,serif;font-size:5.0px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}\nspan.cls_026{font-family:Arial,serif;font-size:8.0px;color:rgb(0,0,0);font-weight:bold;font-style:normal;text-decoration: underline}\ndiv.cls_026{font-family:Arial,serif;font-size:8.0px;color:rgb(0,0,0);font-weight:bold;font-style:normal;text-decoration: none}\nspan.cls_017{font-family:Arial,serif;font-size:7.5px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}\ndiv.cls_017{font-family:Arial,serif;font-size:7.5px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}\nspan.cls_018{font-family:Times,serif;font-size:10.1px;color:rgb(0,0,0);font-weight:bold;font-style:normal;text-decoration: none}\ndiv.cls_018{font-family:Times,serif;font-size:10.1px;color:rgb(0,0,0);font-weight:bold;font-style:normal;text-decoration: none}\nspan.cls_019{font-family:Arial,serif;font-size:7.1px;color:rgb(0,0,0);font-weight:bold;font-style:normal;text-decoration: none}\ndiv.cls_019{font-family:Arial,serif;font-size:7.1px;color:rgb(0,0,0);font-weight:bold;font-style:normal;text-decoration: none}\nspan.cls_021{font-family:Arial,serif;font-size:8.0px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}\ndiv.cls_021{font-family:Arial,serif;font-size:8.0px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}\n-->\n" }} />
-          <div style={{position: 'absolute', left: '75%', marginLeft: '-306px', top: 125, width: 612, height: 792, borderStyle: 'outset', overflow: 'hidden'}}>
+          <FlexColumn><div style={{position: 'absolute', left: '50%', marginLeft: '-306px', top: 125, width: 612, height: 792, borderStyle: 'outset', overflow: 'hidden'}}>
           <div style={{position: 'absolute', left: 0, top: 0}}>
-            <img src="backgroundPhotos/background02.jpg" width={612} height={792} /></div>
+           <img
+           style={{boxShadow: '5px 5px 5px black'}}
+           src={backgroundPhoto2}
+           width={612}
+           height={792}/>
+            </div>
           <div style={{position: 'absolute', left: '41.39px', top: '27.78px'}} className="cls_006"><span className="cls_006">FACILITY NAME AND PERMIT NUMBER:</span></div>
           <div style={{position: 'absolute', left: '473.40px', top: '27.90px'}} className="cls_007"><span className="cls_007">Form Approved 1/14/99</span></div>
           <div style={{position: 'absolute', left: '473.40px', top: '35.94px'}} className="cls_007"><span className="cls_007">OMB Number  2040-0086</span></div>
@@ -193,9 +218,14 @@ export default class Permits extends Component {
           <div style={{position: 'absolute', left: '36.00px', top: '760.62px'}} className="cls_005"><span className="cls_005">EPA Form 3510-2A (Rev. 1-99).  Replaces EPA forms 7550-6 &amp; 7550-22.</span></div>
           <div style={{position: 'absolute', left: '530.58px', top: '760.68px'}} className="cls_005"><span className="cls_005">Page 1 of 21</span></div>
         </div>
-        <div style={{position: 'absolute', left: '75%', marginLeft: '-306px', top: 917, width: 612, height: 792, borderStyle: 'outset', overflow: 'hidden'}}>
+        <div style={{position: 'absolute', left: '50%', marginLeft: '-306px', top: 927, width: 612, height: 792, borderStyle: 'outset', overflow: 'hidden'}}>
           <div style={{position: 'absolute', left: 0, top: 0}}>
-            <img src="backgroundPhotos/background03.jpg" width={612} height={792} /></div>
+          <img
+           style={{boxShadow: '5px 5px 5px black'}}
+           src={backgroundPhoto3}
+           width={612}
+           height={792}/>
+         </div>
           <div style={{position: 'absolute', left: '41.39px', top: '27.78px'}} className="cls_006"><span className="cls_006">FACILITY NAME AND PERMIT NUMBER:</span></div>
           <div style={{position: 'absolute', left: '473.40px', top: '27.90px'}} className="cls_007"><span className="cls_007">Form Approved 1/14/99</span></div>
           <div style={{position: 'absolute', left: '473.40px', top: '35.94px'}} className="cls_007"><span className="cls_007">OMB Number  2040-0086</span></div>
@@ -240,10 +270,15 @@ export default class Permits extends Component {
           <div style={{position: 'absolute', left: '102.72px', top: '721.92px'}} className="cls_006"><span className="cls_006">Total population served</span></div>
           <div style={{position: 'absolute', left: '36.00px', top: '760.62px'}} className="cls_005"><span className="cls_005">EPA Form 3510-2A (Rev. 1-99).  Replaces EPA forms 7550-6 &amp; 7550-22.</span></div>
           <div style={{position: 'absolute', left: '530.58px', top: '760.68px'}} className="cls_005"><span className="cls_005">Page 2 of 21</span></div>
-        </div>
-        <div style={{position: 'absolute', left: '50%', marginLeft: '-306px', top: 2406, width: 612, height: 792, borderStyle: 'outset', overflow: 'hidden'}}>
+        </div></FlexColumn>
+        <FlexColumn><div style={{position: 'absolute', left: '50%', marginLeft: '-306px', top: 1729, width: 612, height: 792, borderStyle: 'outset', overflow: 'hidden'}}>
           <div style={{position: 'absolute', left: 0, top: 0}}>
-            <img src="backgroundPhotos/background04.jpg" width={612} height={792} /></div>
+          <img
+           style={{boxShadow: '5px 5px 5px black'}}
+           src={backgroundPhoto4}
+           width={612}
+           height={792}/>
+           </div>
           <div style={{position: 'absolute', left: '41.39px', top: '27.78px'}} className="cls_006"><span className="cls_006">FACILITY NAME AND PERMIT NUMBER:</span></div>
           <div style={{position: 'absolute', left: '473.40px', top: '27.90px'}} className="cls_007"><span className="cls_007">Form Approved 1/14/99</span></div>
           <div style={{position: 'absolute', left: '473.40px', top: '35.94px'}} className="cls_007"><span className="cls_007">OMB Number  2040-0086</span></div>
@@ -321,10 +356,15 @@ export default class Permits extends Component {
           <div style={{position: 'absolute', left: '531.17px', top: '689.16px'}} className="cls_005"><span className="cls_005">No</span></div>
           <div style={{position: 'absolute', left: '36.00px', top: '760.62px'}} className="cls_005"><span className="cls_005">EPA Form 3510-2A (Rev. 1-99).  Replaces EPA forms 7550-6 &amp; 7550-22.</span></div>
           <div style={{position: 'absolute', left: '530.58px', top: '760.68px'}} className="cls_005"><span className="cls_005">Page 3 of 21</span></div>
-        </div>
-        <div style={{position: 'absolute', left: '50%', marginLeft: '-306px', top: 3208, width: 612, height: 792, borderStyle: 'outset', overflow: 'hidden'}}>
+        </div></FlexColumn>
+        <div style={{position: 'absolute', left: '50%', marginLeft: '-306px', top: 2531, width: 612, height: 792, borderStyle: 'outset', overflow: 'hidden'}}>
           <div style={{position: 'absolute', left: 0, top: 0}}>
-            <img src="backgroundPhotos/background05.jpg" width={612} height={792} /></div>
+          <img
+           style={{boxShadow: '5px 5px 5px black'}}
+           src={backgroundPhoto5}
+           width={612}
+           height={792}/>
+           </div>
           <div style={{position: 'absolute', left: '41.40px', top: '39.30px'}} className="cls_006"><span className="cls_006">FACILITY NAME AND PERMIT NUMBER:</span></div>
           <div style={{position: 'absolute', left: '473.40px', top: '39.42px'}} className="cls_007"><span className="cls_007">Form Approved 1/14/99</span></div>
           <div style={{position: 'absolute', left: '473.40px', top: '47.46px'}} className="cls_007"><span className="cls_007">OMB Number  2040-0086</span></div>
@@ -358,9 +398,14 @@ export default class Permits extends Component {
           <div style={{position: 'absolute', left: '36.00px', top: '760.62px'}} className="cls_005"><span className="cls_005">EPA Form 3510-2A (Rev. 1-99).  Replaces EPA forms 7550-6 &amp; 7550-22.</span></div>
           <div style={{position: 'absolute', left: '530.58px', top: '760.68px'}} className="cls_005"><span className="cls_005">Page 4 of 21</span></div>
         </div>
-        <div style={{position: 'absolute', left: '50%', marginLeft: '-306px', top: 4010, width: 612, height: 792, borderStyle: 'outset', overflow: 'hidden'}}>
+        <div style={{position: 'absolute', left: '50%', marginLeft: '-306px', top: 3333, width: 612, height: 792, borderStyle: 'outset', overflow: 'hidden'}}>
           <div style={{position: 'absolute', left: 0, top: 0}}>
-            <img src="backgroundPhotos/background06.jpg" width={612} height={792} /></div>
+          <img
+           style={{boxShadow: '5px 5px 5px black'}}
+           src={backgroundPhoto6}
+           width={612}
+           height={792}/>
+           </div>
           <div style={{position: 'absolute', left: '41.28px', top: '39.30px'}} className="cls_006"><span className="cls_006">FACILITY NAME AND PERMIT NUMBER:</span></div>
           <div style={{position: 'absolute', left: '473.28px', top: '39.42px'}} className="cls_007"><span className="cls_007">Form Approved 1/14/99</span></div>
           <div style={{position: 'absolute', left: '473.28px', top: '47.46px'}} className="cls_007"><span className="cls_007">OMB Number  2040-0086</span></div>
@@ -415,9 +460,14 @@ export default class Permits extends Component {
           <div style={{position: 'absolute', left: '36.00px', top: '760.62px'}} className="cls_005"><span className="cls_005">EPA Form 3510-2A (Rev. 1-99).  Replaces EPA forms 7550-6 &amp; 7550-22.</span></div>
           <div style={{position: 'absolute', left: '530.58px', top: '760.68px'}} className="cls_005"><span className="cls_005">Page 5 of 21</span></div>
         </div>
-        <div style={{position: 'absolute', left: '50%', marginLeft: '-306px', top: 4812, width: 612, height: 792, borderStyle: 'outset', overflow: 'hidden'}}>
+        <div style={{position: 'absolute', left: '50%', marginLeft: '-306px', top: 4135, width: 612, height: 792, borderStyle: 'outset', overflow: 'hidden'}}>
           <div style={{position: 'absolute', left: 0, top: 0}}>
-            <img src="backgroundPhotos/background07.jpg" width={612} height={792} /></div>
+          <img
+           style={{boxShadow: '5px 5px 5px black'}}
+           src={backgroundPhoto7}
+           width={612}
+           height={792}/>
+           </div>
           <div style={{position: 'absolute', left: '41.40px', top: '39.30px'}} className="cls_006"><span className="cls_006">FACILITY NAME AND PERMIT NUMBER:</span></div>
           <div style={{position: 'absolute', left: '473.40px', top: '39.42px'}} className="cls_007"><span className="cls_007">Form Approved 1/14/99</span></div>
           <div style={{position: 'absolute', left: '473.40px', top: '47.46px'}} className="cls_007"><span className="cls_007">OMB Number  2040-0086</span></div>
