@@ -91,7 +91,8 @@ export default class workOrders extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleSelect = this.handleSelect.bind(this);
         this.writeData = this.writeData.bind(this);
-        this.writeData1 = this.writeData1.bind(this);
+
+
 
 
       }
@@ -357,7 +358,17 @@ export default class workOrders extends Component {
       this.removeAuthListener = fire.auth().onAuthStateChanged(user=>{
       const sampleRef = fire.database().ref(`/workOrders/${user.uid}/${itemId}`);
       console.log("Fill em in");
+      console.log(this.state.id);
       sampleRef.on('value', (snapshot) => {
+
+        this.setState({
+          startDate: '',
+          endDate: '',
+          area: '',
+          responsibility: '',
+          description: '',
+
+        });
 
       let orders = snapshot.val();
       console.log(orders);
@@ -392,6 +403,44 @@ export default class workOrders extends Component {
 });
     });
   }
+
+
+  writeStates = (itemId) => {
+
+    this.removeAuthListener = fire.auth().onAuthStateChanged(user=>{
+    const sampleRef = fire.database().ref(`/workOrders/${user.uid}/${this.state.id}`);
+    console.log("Fill em in");
+    sampleRef.child("startDate").set(this.state.startDate);
+    sampleRef.child("endDate").set(this.state.endDate);
+    sampleRef.child("area").set(this.state.area);
+    sampleRef.child("description").set(this.state.description);
+    sampleRef.child("responsibility").set(this.state.responsibility);
+    sampleRef.child("id").set(this.state.id);
+  });
+
+
+  }
+
+  writeStatesResponsibility = (itemId) => {
+    this.removeAuthListener = fire.auth().onAuthStateChanged(user=>{
+    const samplesRef = fire.database().ref(`workOrders/${user.uid}`);
+    const orderID = fire.database().ref(`/workOrders/${user.uid}/${this.state.id}`);
+    orderID.child("responsibility").set(this.state.responsibility);
+    console.log(this.state.area);
+  });
+  }
+
+  writeStatesDescription = (itemId) => {
+    this.removeAuthListener = fire.auth().onAuthStateChanged(user=>{
+    const samplesRef = fire.database().ref(`workOrders/${user.uid}`);
+    const orderID = fire.database().ref(`/workOrders/${user.uid}/${this.state.id}`);
+    orderID.child("description").set(this.state.description);
+    console.log(this.state.description);
+  });
+  }
+
+
+
 
   fillEmpty(itemId) {
     let area = '';
@@ -516,45 +565,7 @@ writeData (e) {
     checkbox: '<button id="buttonTest" onClick={buttonTest}>Test<button>',
   }
 
-  orderID.child("area").set(this.state.area);
-  orderID.child("responsibility").set(this.state.responsibility);
-  orderID.child("description").set(this.state.description);
-  orderID.child("startDate").set(this.state.startDate);
-  orderID.child("endDate").set(this.state.endDate);
-
-
-
-
-
-  //this.setState is used to clear the text boxes after the form has been submitted.
-
-});
-}
-writeData1 (e) {
-  e.preventDefault();
-  //fire.database().ref('samples') refers to the main title of the fire database.
-  this.removeAuthListener = fire.auth().onAuthStateChanged(user=>{
-  const samplesRef = fire.database().ref(`workOrders/${user.uid}`);
-  const orderID = fire.database().ref(`/workOrders/${user.uid}/${this.state.id}`);
-  const newCheckboxKey = firebase.database().ref().child('checkbox').push().key;
-
-  let id = newCheckboxKey;
-  let box = id;
-
-  console.log(box);
-  const sample = {
-
-    id: this.state.id,
-    area: this.state.area,
-    responsibility: this.state.responsibility,
-    description: this.state.description,
-    startDate: this.state.startDate,
-    endDate: this.state.endDate,
-    checkbox: '<button id="buttonTest" onClick={buttonTest}>Test<button>',
-  }
-
-
-  orderID.child("responsibility").set(this.state.responsibility);
+  samplesRef.child(this.state.id).set(sample);
 
 
 
@@ -565,6 +576,7 @@ writeData1 (e) {
 
 });
 }
+
 
 
 handleBtnClick = () => {
@@ -691,7 +703,7 @@ filterArea = () => {
             <Button onClick={this.sortDescriptionBack}>Sort Test</Button>
           <Button onClick={this.filterArea}>Filter</Button></Row>
                 <Row>
-                  
+
 
                   <Col xs={8} md={8}>
 
@@ -701,8 +713,7 @@ filterArea = () => {
 
                           <ul>
                             {this.state.orders.map((order) => {
-                              console.log(order.area);
-                              console.log(this.state.orders);
+
 
 
                               return (
@@ -809,6 +820,7 @@ filterArea = () => {
 
                             <strong>{this.state.responsibility}</strong>
 
+
                             </Col>
 
                             </Row>
@@ -829,7 +841,7 @@ filterArea = () => {
                       <button>Add sample</button>
                     </form>
               </section>
-              <button onClick={this.writeData, this.writeData1}>Overwrite Data</button>
+              <button onClick={this.writeData} >Overwrite Data</button>
               </Col>
               </Row>
 

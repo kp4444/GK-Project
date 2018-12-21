@@ -1,0 +1,854 @@
+import React, { Component } from 'react'
+import { Navbar, Nav, NavItem, Button, ButtonToolbar, Form, Grid, Row, FormGroup, Tab, Tabs, Col, Table, Popover, ControlLabel, MenuItem, DropdownButton, FormControl, Checkbox } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import './CustomNavbar.css'
+import firebase from 'firebase';
+import Chart from 'react-google-charts';
+import { PDFExport } from '@progress/kendo-react-pdf';
+import { fire } from '../fire';
+import ReactDataGrid from 'react-data-grid';
+import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
+
+
+
+const styles = {
+  topPad: {
+    paddingTop: "20px"
+  },
+};
+
+const ColoredLine = ({ color }) => (
+    <hr
+        style={{
+            color: color,
+            backgroundColor: color,
+            height: .8
+        }}
+    />
+);
+
+
+
+export default class dailySamples extends Component {
+
+
+    constructor() {
+        super();
+        this.state = {
+
+          sampleDate: '',
+          sampleTime: '',
+          operator: '',
+
+          sampleLocation: '',
+
+          temperatureResult: '',
+
+          conductivityResult: '',
+
+          pHResult: '',
+
+          DOResult: '',
+
+          nitrateResult: '',
+
+          nitriteResult: '',
+
+          ammoniaResult: '',
+          totalInorganicNitrogen: '',
+
+
+          turbidityResult: '',
+
+          TSSResult: '',
+
+          id: '',
+          key: 1,
+          idKey: '',
+          page: '',
+          area: '',
+          areaData: [],
+          responsibility: '',
+          responsibilityData: [],
+          startDate: '',
+          startDateData: [],
+          endDate: '',
+          endDateData: [],
+          description: '',
+          descriptionData: [],
+          checkbox: '',
+          checkboxData: [],
+          samples: [],
+          orders: []
+
+
+        }
+        //these are triggered events.  handleChange is for text box changes
+        //handlesubmit is for the form being submitted.
+        //every event trigger needs to be bound like is below with .bind
+        //we might now have to do this anymore with the newest version of react, but i have it to be safe.
+
+
+        this.writeData = this.writeData.bind(this);
+
+
+
+
+      }
+
+      //event triggered when text boxes of forms, values are changed
+      handleChange(e) {
+        this.setState({
+          [e.target.name]: e.target.value
+        });
+      }
+      //event triggered when form is submitted
+      handleSubmit(e) {
+        e.preventDefault();
+        //fire.database().ref('samples') refers to the main title of the fire database.
+        this.removeAuthListener = fire.auth().onAuthStateChanged(user=>{
+        const samplesRef = fire.database().ref(`workOrders/${user.uid}`);
+        const orderID = fire.database().ref(`/workOrders/${user.uid}/${orderID}`);
+        const newCheckboxKey = firebase.database().ref().child('checkbox').push().key;
+
+        let id = newCheckboxKey;
+        let box = id;
+
+        console.log(box);
+        const sample = {
+
+
+          id: newCheckboxKey,
+          area: this.state.area,
+          responsibility: this.state.responsibility,
+          description: this.state.description,
+          startDate: this.state.startDate,
+          endDate: this.state.endDate,
+          checkbox: '<button id="buttonTest" onClick={buttonTest}>Test<button>',
+        }
+
+
+
+
+        samplesRef.push(sample);
+        //this.setState is used to clear the text boxes after the form has been submitted.
+        this.setState({
+          startDate: '',
+          endDate: '',
+          area: '',
+          responsibility: '',
+          description: '',
+
+        });
+      });
+    }
+
+
+
+    sampleInfluent = () => {
+      this.setState({
+        sampleLocation: 'Influent',
+
+      })
+    }
+
+    sampleEffluent = () => {
+      this.setState({
+        sampleLocation: 'Effluent',
+
+      })
+    }
+
+
+    operatorRamon = () => {
+      this.setState({
+        operator: 'Ramon',
+      })
+    }
+    operatorAnthony = () => {
+      this.setState({
+        operator: 'Anthony',
+      })
+    }
+    operatorAllen = () => {
+      this.setState({
+        operator: 'Allen',
+      })
+    }
+    operatorTim = () => {
+      this.setState({
+        operator: 'Tim',
+      })
+    }
+
+
+      //this function is constantly running after the initial render.  Snapshot is used to look into the database.
+      //[] indicates an array value
+      //.map(Number) changes an array of strings to an array of integers
+      //snapshot.foreach(ss => {...}) **this looks in each "Sample" for the child of "user"**
+      //child of user can be child of BOD or child of tss or whatever.  It finds the value that is a child to that label.
+
+      componentDidMount() {
+        this.removeAuthListener = fire.auth().onAuthStateChanged(user=>{
+          const samplesRef = fire.database().ref(`dailySamples/${user.uid}`);
+          samplesRef.on('value', (snapshot) => {
+
+            let startDateData = [];
+            let endDateData = [];
+            let descriptionData = [];
+            let responsibilityData = [];
+            let areaData = [];
+            let checkboxData = [];
+            let idData = [];
+
+
+
+
+
+            snapshot.forEach(ss => {
+            idData.push(ss.child('id').val());
+            this.setState({
+              idData: (idData),
+            })
+          });
+
+            snapshot.forEach(ss => {
+            checkboxData.push(ss.child('checkbox').val());
+            this.setState({
+              checkboxData: (checkboxData),
+            })
+          });
+
+            snapshot.forEach(ss => {
+            startDateData.push(ss.child('startDate').val());
+            this.setState({
+              startDateData: (startDateData),
+            })
+          });
+          snapshot.forEach(ss => {
+          endDateData.push(ss.child('endDate').val());
+          this.setState({
+            endDateData: (endDateData),
+          })
+        });
+
+        snapshot.forEach(ss => {
+        descriptionData.push(ss.child('description').val());
+        this.setState({
+          descriptionData: (descriptionData),
+        })
+      });
+
+      snapshot.forEach(ss => {
+      areaData.push(ss.child('area').val());
+      this.setState({
+        areaData: (areaData),
+      })
+    });
+
+    snapshot.forEach(ss => {
+    responsibilityData.push(ss.child('responsibility').val());
+    this.setState({
+      responsibilityData: (responsibilityData),
+    })
+  });
+
+
+        console.log(startDateData);
+        console.log(endDateData);
+
+
+
+            //Pulls an array for all of the tss data values
+
+
+
+
+
+
+          //chart labels first
+          let chartData = [['StartDate', 'EndDate', 'Area', 'Description', 'Responsibility', 'Test']];
+          let tssGraph = [['Date', 'TSS Concentration']];
+          let bodGraph = [['Date', 'BOD Concentration']];
+          let nitrateGraph = [['Date', 'Nitrate Concentration']];
+          let nitriteGraph = [['Date', 'Nitrite Concentration']];
+          let ammoniaGraph = [['Date', 'Ammonia Concentration']];
+
+
+          //loop to scan firebase data
+          for (let i=0; i < startDateData.length; i++) {
+            //push send this data to the back of the chartData variable above.
+            chartData.push([new Date(Date.parse(startDateData[i])), new Date(Date.parse(endDateData[i])), (areaData[i]), (descriptionData[i]), (responsibilityData[i]), (checkboxData[i])]);
+
+            this.setState({
+              chartData: chartData,
+              startDateData: startDateData,
+
+
+            })
+
+
+
+          }
+          console.log(chartData);
+          console.log(areaData);
+          areaData.sort();
+
+
+
+
+
+
+          let orders = snapshot.val();
+          console.log(orders);
+          let newState = [];
+          for (let order in orders) {
+            newState.push({
+              id: order,
+              startDate: orders[order].startDate,
+              endDate: orders[order].endDate,
+              description: orders[order].description,
+              responsibility: orders[order].responsibility,
+              area: orders[order].area,
+
+              sampleDate: orders[order].sampleDate,
+              sampleTime: orders[order].sampleTime,
+              operator: orders[order].operator,
+
+              sampleLocation: orders[order].sampleLocation,
+
+              temperatureResult: orders[order].temperatureResult,
+
+              conductivityResult: orders[order].conductivityResult,
+
+              pHResult: orders[order].pHResult,
+
+              DOResult: orders[order].DOResult,
+
+
+              nitrateResult: orders[order].nitrateResult,
+
+              nitriteResult: orders[order].nitriteResult,
+
+              ammoniaResult: orders[order].ammoniaResult,
+
+
+              turbidityResult: orders[order].turbidityResult,
+
+              TSSResult: orders[order].TSSResult,
+
+
+
+            });
+          }
+          this.setState({
+            orders: newState,
+            totalInorganicNitrogen: parseInt(this.state.ammoniaResult) + parseInt(this.state.nitriteResult) + parseInt(this.state.nitrateResult),
+          });
+
+
+        });
+
+      });
+
+
+    }
+
+
+
+
+
+    //totally honest...not sure how this knows exactly the right one to remove.
+    //something to do with the SampleID, but I think .remove() is a fire standard function.
+
+    fillStates(itemId) {
+      let area = '';
+      this.removeAuthListener = fire.auth().onAuthStateChanged(user=>{
+      const sampleRef = fire.database().ref(`/dailySamples/${user.uid}/${itemId}`);
+      console.log("Fill em in");
+      console.log(this.state.id);
+      sampleRef.on('value', (snapshot) => {
+
+      let orders = snapshot.val();
+      console.log(orders);
+      console.log(snapshot.child('area').val());
+      let newState = [];
+      for (let order in orders) {
+        newState.push({
+          id: order,
+
+          area: orders[order].area,
+          startDate: orders[order].startDate,
+          endDate: orders[order].endDate,
+          description: orders[order].description,
+          responsibility: orders[order].responsibility,
+
+          sampleDate: orders[order].sampleDate,
+          sampleTime: orders[order].sampleTime,
+          operator: orders[order].operator,
+          sampleLocation: orders[order].sampleLocation,
+          temperatureResult: orders[order].temperatureResult,
+          conductivityResult: orders[order].conductivityResult,
+          pHResult: orders[order].pHResult,
+          DOResult: orders[order].DOResult,
+          nitrateResult: orders[order].nitrateResult,
+          nitriteResult: orders[order].nitriteResult,
+          ammoniaResult: orders[order].ammoniaResult,
+          turbidityResult: orders[order].turbidityResult,
+          TSSResult: orders[order].TSSResult,
+
+        });
+      }
+      this.setState({
+        area: snapshot.child('area').val(),
+        responsibility: snapshot.child('responsibility').val(),
+        startDate: snapshot.child('startDate').val(),
+        endDate: snapshot.child('endDate').val(),
+        description: snapshot.child('description').val(),
+        id: snapshot.child('id').val(),
+        key: 2,
+
+
+        sampleDate: snapshot.child('sampleDate').val(),
+        sampleTime: snapshot.child('sampleTime').val(),
+        operator: snapshot.child('operator').val(),
+
+        sampleLocation: snapshot.child('sampleLocation').val(),
+
+        temperatureResult: snapshot.child('temperatureResult').val(),
+
+        conductivityResult: snapshot.child('conductivityResult').val(),
+
+
+        pHResult: snapshot.child('pHResult').val(),
+
+        DOResult: snapshot.child('DOResult').val(),
+
+
+        nitrateResult: snapshot.child('nitrateResult').val(),
+
+        nitriteResult: snapshot.child('nitriteResult').val(),
+
+        ammoniaResult: snapshot.child('ammoniaResult').val(),
+
+
+        turbidityResult: snapshot.child('turbidityResult').val(),
+
+        TSSResult: snapshot.child('TSSResult').val(),
+
+
+      })
+
+
+});
+    });
+  }
+
+  fillEmpty(itemId) {
+    let area = '';
+    this.removeAuthListener = fire.auth().onAuthStateChanged(user=>{
+    const sampleRef = fire.database().ref(`/dailySamples/${user.uid}/${itemId}`);
+    console.log("Fill em in");
+    sampleRef.on('value', (snapshot) => {
+
+    let orders = snapshot.val();
+    console.log(orders);
+    console.log(snapshot.child('area').val());
+    let newState = [];
+    for (let order in orders) {
+      newState.push({
+        id: order,
+
+        area: orders[order].area,
+        startDate: orders[order].startDate,
+        endDate: orders[order].endDate,
+        description: orders[order].description,
+        responsibility: orders[order].responsibility,
+
+
+
+
+        sampleDate: orders[order].sampleDate,
+        sampleTime: orders[order].sampleTime,
+        operator: orders[order].operator,
+
+        sampleLocation: orders[order].sampleLocation,
+
+        temperatureResult: orders[order].temperatureResult,
+
+        conductivityResult: orders[order].conductivityResult,
+
+
+        pHResult: orders[order].pHResult,
+
+        DOResult: orders[order].DOResult,
+
+
+        nitrateResult: orders[order].nitrateResult,
+
+        nitriteResult: orders[order].nitriteResult,
+
+        ammoniaResult: orders[order].ammoniaResult,
+
+
+      });
+    }
+    this.setState({
+      area: '',
+      responsibility: '',
+      startDate: '',
+      endDate: '',
+      description: '',
+      id: '',
+      key: 2,
+
+
+
+
+      sampleDate: '',
+      sampleTime: '',
+      operator: '',
+
+      sampleLocation: '',
+
+      temperatureResult: '',
+
+      conductivityResult: '',
+
+
+      pHResult: '',
+
+      DOResult: '',
+
+
+      nitrateResult: '',
+
+      nitriteResult: '',
+
+      ammoniaResult: '',
+
+
+      turbidityResult: '',
+
+      TSSResult: '',
+
+
+    })
+
+});
+  });
+}
+
+
+
+    removesample = (e) => {
+      this.removeAuthListener = fire.auth().onAuthStateChanged(user=>{
+        const samplesRef = fire.database().ref(`dailySamples/${user.uid}`);
+        const orderID = fire.database().ref(`/dailySamples/${user.uid}/${e}`);
+      orderID.remove();
+    });
+    this.setState({
+
+      key: 1,
+
+    })
+    }
+
+    handleSelect = (key) => {
+
+  this.setState({key});
+}
+
+writeData (e) {
+  e.preventDefault();
+  //fire.database().ref('samples') refers to the main title of the fire database.
+  this.removeAuthListener = fire.auth().onAuthStateChanged(user=>{
+  const samplesRef = fire.database().ref(`dailySamples/${user.uid}`);
+  const orderID = fire.database().ref(`/dailySamples/${user.uid}/${this.state.id}`);
+  const newCheckboxKey = firebase.database().ref().child('checkbox').push().key;
+
+  let id = newCheckboxKey;
+  let box = id;
+
+  console.log(box);
+  const sample = {
+
+    id: this.state.id,
+
+    sampleDate: this.state.sampleDate,
+    sampleTime: this.state.sampleTime,
+    operator: this.state.operator,
+    sampleLocation: this.state.sampleLocation,
+    temperatureResult: this.state.temperatureResult,
+    conductivityResult: this.state.conductivityResult,
+    pHResult: this.state.pHResult,
+    DOResult: this.state.DOResult,
+    nitrateResult: this.state.nitrateResult,
+    nitriteResult: this.state.nitriteResult,
+    ammoniaResult: this.state.ammoniaResult,
+    turbidityResult: this.state.turbidityResult,
+    TSSResult: this.state.TSSResult,
+
+
+
+  }
+
+    samplesRef.child(this.state.id).set(sample);
+
+
+
+
+
+
+  //this.setState is used to clear the text boxes after the form has been submitted.
+
+});
+}
+
+
+
+
+
+
+
+sortDate = (itemId) => {
+  console.log(this.state.orders);
+  let orders = this.state.orders;
+  orders.sort(function(a, b) {
+    if (a.sampleDate === b.sampleDate) {
+      return 0;
+    }
+    return a.sampleDate > b.sampleDate ? 1 : -1;
+});
+this.setState({
+  orders: orders,
+
+})
+}
+sortDateBack = (itemId) => {
+  console.log(this.state.orders);
+
+  let orders = this.state.orders;
+  orders.sort(function(a, b) {
+    if (b.sampleDate === a.sampleDate) {
+      return 0;
+    }
+    return b.sampleDate > a.sampleDate ? 1 : -1;
+});
+this.setState({
+  orders: orders,
+})
+}
+
+sortDescription = (itemId) => {
+  console.log(this.state.orders);
+  let orders = this.state.orders;
+  orders.sort(function(a, b) {
+    if (a.description === b.description) {
+      return 0;
+    }
+    return a.description > b.description ? 1 : -1;
+});
+this.setState({
+  orders: orders,
+})
+}
+
+sortDescriptionBack = (itemId) => {
+  console.log(this.state.orders);
+  let orders = this.state.orders;
+  orders.sort(function(a, b) {
+    if (b.description === a.description) {
+      return 0;
+    }
+    return b.description > a.description ? 1 : -1;
+});
+this.setState({
+  orders: orders,
+})
+}
+
+
+
+
+
+
+
+
+
+
+render() {
+  return (
+    <div>
+
+      <Grid>
+        <Row>
+          <Row>
+            <Col xs={6} md={6}>
+          <h3>Daily Sample Logs</h3>
+          </Col>
+          <Col xs={6} md={6}>
+            <ButtonToolbar style={styles.topPad}>
+          <Button  onClick={() => this.fillEmpty()} eventKey={2} bsSize="large">+ Create New Sample Log</Button>
+        </ButtonToolbar>
+          </Col>
+          </Row>
+          <Col xs={12} md={8}>
+
+      <Tabs activeKey={this.state.key} onSelect={this.handleSelect} defaultActiveKey={1} id="uncontrolled-tab-example">
+
+
+        <Tab eventKey={1} title="+ Daily Samples">
+          <Grid>
+            <Row>
+            <Button onClick={this.sortDate}>Sort Test</Button>
+          <Button onClick={this.sortDateBack}>Sort Test</Button>
+        <Button onClick={this.sortDescription}>Sort Test</Button>
+      <Button onClick={this.sortDescriptionBack}>Sort Test</Button>
+    <Button onClick={this.filterArea}>Filter</Button></Row>
+          <Row>
+
+
+            <Col xs={10} md={10}>
+
+
+              <Table striped bordered condensed hover>
+              <thead>
+                <tr>
+
+                  <th>Sample Date</th>
+                  <th>Operator</th>
+                  <th>pH</th>
+                  <th>DO</th>
+                  <th>Nitrate</th>
+                  <th>Nitrite</th>
+                  <th>Ammonia</th>
+                  <th>Tubidity</th>
+                  <th>TSS</th>
+
+                </tr>
+
+
+                {this.state.orders.map((order) => {
+
+
+                  return (
+                    <tr>
+                        <td>{order.sampleDate}</td>
+                        <td>{order.operator}</td>
+                        <td>{order.pHResult}</td>
+                        <td>{order.DOResult}</td>
+                        <td>{order.nitrateResult}</td>
+                        <td>{order.nitriteResult}</td>
+                        <td>{order.ammoniaResult}</td>
+                        <td>{order.turbidityResult}</td>
+                        <td>{order.TSSResult}</td>
+                        <td><button onClick={() => this.fillStates(order.id)}>Edit Sample</button></td>
+                        <td><button onClick={() => this.removesample(order.id)}>Remove sample</button></td>
+                        </tr>
+
+
+
+                  )
+                })}
+
+
+              </thead>
+            </Table>
+
+
+
+
+
+            </Col>
+          </Row>
+        </Grid>
+          </Tab>
+
+
+
+
+          <Tab eventKey={2} >
+            <Grid>
+              <Row>
+                <Col xs={6} md={6}>
+            <section className='add-item'>
+              <form onSubmit={this.handleSubmit}>
+                    <h2>Maintenance Work Order</h2>
+
+                    <hr></hr>
+                    <Row>
+                      <Col xs={3} md={3}>
+                      <ButtonToolbar>
+                        <DropdownButton title="Area" id="dropdown-size-medium">
+                          <MenuItem eventKey="1" onSelect={this.areaChangeInfluent}>Influent Pump Station</MenuItem>
+                          <MenuItem eventKey="2" onSelect={this.areaChangeHeadworks}>Headworks</MenuItem>
+                          <MenuItem eventKey="3">FEB</MenuItem>
+                          <MenuItem eventKey="4">Oxidation Ditches</MenuItem>
+                        </DropdownButton>
+                      </ButtonToolbar>
+                    </Col>
+                    <Col xs={5} md={5}>
+
+                      <strong>{this.state.area}</strong>
+
+                      </Col>
+
+                      </Row>
+                      <hr></hr>
+                        <Row>
+                          <Col xs={3} md={3}>
+                          <ButtonToolbar>
+                            <DropdownButton title="Responsibility" id="dropdown-size-medium">
+                              <MenuItem eventKey="1" onSelect={this.responsibilityChangeRamon}>Ramon</MenuItem>
+                              <MenuItem eventKey="2" onSelect={this.responsibilityChangeRamonChangeAnthony}>Anthony</MenuItem>
+                              <MenuItem eventKey="3" onSelect={this.responsibilityChangeRamonChangeAllen}>Allen</MenuItem>
+                              <MenuItem eventKey="4" onSelect={this.responsibilityChangeRamonChangeTim}>Tim</MenuItem>
+                            </DropdownButton>
+                          </ButtonToolbar>
+                        </Col>
+                        <Col xs={5} md={5} smOffset={2}>
+
+                          <strong>{this.state.responsibility}</strong>
+
+
+                          </Col>
+
+                          </Row>
+                          <hr></hr>
+
+
+
+
+
+
+                      <FormGroup controlId="formControlsTextarea">
+                        <ControlLabel>Textarea</ControlLabel>
+                        <FormControl required="true" componentClass="textarea" name="description" placeholder="textarea" onChange={this.handleChange} value={this.state.description} />
+                      </FormGroup>
+                    <h3>Work Order Date</h3>
+                    <input required="true" type="date" name="startDate" placeholder="What is the date of this Sample?" onChange={this.handleChange} value={this.state.startDate} />
+                  <input required="true" type="date" name="endDate" placeholder="What is the date of this Sample?" onChange={this.handleChange} value={this.state.endDate} />
+                    <button>Add sample</button>
+                  </form>
+            </section>
+            <button onClick={this.writeData} >Overwrite Data</button>
+            </Col>
+            </Row>
+
+            </Grid>
+          </Tab>
+
+
+
+    </Tabs>
+
+
+    </Col>
+    </Row>
+    </Grid>
+
+    </div>
+        )
+      }
+    }

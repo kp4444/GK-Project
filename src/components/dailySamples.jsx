@@ -8,8 +8,18 @@ import { PDFExport } from '@progress/kendo-react-pdf';
 import { fire } from '../fire';
 import ReactDataGrid from 'react-data-grid';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
+import { TiArrowSortedDown, TiPencil, TiTrash } from "react-icons/ti";
 
 
+
+
+
+
+
+
+const buttonTest = () => (
+  console.log("testing")
+);
 
 const styles = {
   topPad: {
@@ -35,34 +45,20 @@ export default class dailySamples extends Component {
     constructor() {
         super();
         this.state = {
-
           sampleDate: '',
           sampleTime: '',
           operator: '',
-
           sampleLocation: '',
-          temperatureSamplingTime: '',
-          temperatureAnalysisTime: '',
           temperatureResult: '',
-          conductivitySamplingTime: '',
-          conductivityAnalysisTime: '',
           conductivityResult: '',
-          pHSamplingTime: '',
-          pHAnalysisTime: '',
           pHResult: '',
-          DOSamplingTime: '',
-          DOAnalysisTime: '',
           DOResult: '',
-          nitrateSamplingTime: '',
-          nitrateAnalysisTime: '',
           nitrateResult: '',
-          nitriteSamplingTime: '',
-          nitriteAnalysisTime: '',
           nitriteResult: '',
-          ammoniaSamplingTime: '',
-          ammoniaAnalysisTime: '',
           ammoniaResult: '',
           totalInorganicNitrogen: '',
+          turbidityResult: '',
+          TSSResult: '',
 
           id: '',
           key: 1,
@@ -81,7 +77,8 @@ export default class dailySamples extends Component {
           checkbox: '',
           checkboxData: [],
           samples: [],
-          orders: []
+          orders: [],
+
 
 
         }
@@ -89,9 +86,10 @@ export default class dailySamples extends Component {
         //handlesubmit is for the form being submitted.
         //every event trigger needs to be bound like is below with .bind
         //we might now have to do this anymore with the newest version of react, but i have it to be safe.
-
-
-
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleSelect = this.handleSelect.bind(this);
+        this.writeData = this.writeData.bind(this);
 
 
 
@@ -99,13 +97,13 @@ export default class dailySamples extends Component {
       }
 
       //event triggered when text boxes of forms, values are changed
-      handleChange = (e) => {
+      handleChange(e) {
         this.setState({
           [e.target.name]: e.target.value
         });
       }
       //event triggered when form is submitted
-      handleSubmit = (e) => {
+      handleSubmit(e) {
         e.preventDefault();
         //fire.database().ref('samples') refers to the main title of the fire database.
         this.removeAuthListener = fire.auth().onAuthStateChanged(user=>{
@@ -116,88 +114,63 @@ export default class dailySamples extends Component {
         let id = newCheckboxKey;
         let box = id;
 
+
         console.log(box);
-        const dailySample = {
-
-
-          id: newCheckboxKey,
+        const sample = {
 
           sampleDate: this.state.sampleDate,
           sampleTime: this.state.sampleTime,
           operator: this.state.operator,
-
           sampleLocation: this.state.sampleLocation,
-          temperatureSamplingTime: this.state.temperatureSamplingTime,
-          temperatureAnalysisTime: this.state.temperatureAnalysisTime,
           temperatureResult: this.state.temperatureResult,
-          conductivitySamplingTime: this.state.conductivitySamplingTime,
-          conductivityAnalysisTime: this.state.conductivityAnalysisTime,
           conductivityResult: this.state.conductivityResult,
-          pHSamplingTime: this.state.pHSamplingTime,
-          pHAnalysisTime: this.state.pHAnalysisTime,
           pHResult: this.state.pHResult,
-          DOSamplingTime: this.state.DOSamplingTime,
-          DOAnalysisTime: this.state.DOAnalysisTime,
           DOResult: this.state.DOResult,
-
-          nitrateSamplingTime: this.state.nitrateSamplingTime,
-          nitrateAnalysisTime: this.state.nitrateAnalysisTime,
           nitrateResult: this.state.nitrateResult,
-          nitriteSamplingTime: this.state.nitriteSamplingTime,
-          nitriteAnalysisTime: this.state.nitriteAnalysisTime,
           nitriteResult: this.state.nitriteResult,
-          ammoniaSamplingTime: this.state.ammoniaSamplingTime,
-          ammoniaAnalysisTime: this.state.ammoniaAnalysisTime,
           ammoniaResult: this.state.ammoniaResult,
+          totalInorganicNitrogen: this.state.totalInorganicNitrogen,
+          turbidityResult: this.state.turbidityResult,
+          TSSResult: this.state.TSSResult,
 
-
-
+          area: this.state.area,
+          responsibility: this.state.responsibility,
+          description: this.state.description,
+          startDate: this.state.startDate,
+          endDate: this.state.endDate,
           checkbox: '<button id="buttonTest" onClick={buttonTest}>Test<button>',
         }
 
 
 
 
-        samplesRef.push(dailySample);
+        samplesRef.push(sample);
         //this.setState is used to clear the text boxes after the form has been submitted.
         this.setState({
+          startDate: '',
+          endDate: '',
+          area: '',
+          responsibility: '',
+          description: '',
 
           sampleDate: '',
           sampleTime: '',
           operator: '',
-
           sampleLocation: '',
-          temperatureSamplingTime: '',
-          temperatureAnalysisTime: '',
           temperatureResult: '',
-          conductivitySamplingTime: '',
-          conductivityAnalysisTime: '',
           conductivityResult: '',
-          pHSamplingTime: '',
-          pHAnalysisTime: '',
           pHResult: '',
-          DOSamplingTime: '',
-          DOAnalysisTime: '',
           DOResult: '',
-
-          nitrateSamplingTime: '',
-          nitrateAnalysisTime: '',
           nitrateResult: '',
-          nitriteSamplingTime: '',
-          nitriteAnalysisTime: '',
           nitriteResult: '',
-          ammoniaSamplingTime: '',
-          ammoniaAnalysisTime: '',
           ammoniaResult: '',
           totalInorganicNitrogen: '',
-
-
-
+          turbidityResult: '',
+          TSSResult: '',
 
         });
       });
     }
-
 
 
     sampleInfluent = () => {
@@ -215,24 +188,39 @@ export default class dailySamples extends Component {
     }
 
 
-    operatorRamon = () => {
+
+    areaChangeInfluent = () => {
       this.setState({
-        operator: 'Ramon',
+        area: 'Influent Lift Station',
+
       })
     }
-    operatorAnthony = () => {
+
+    areaChangeHeadworks = () => {
       this.setState({
-        operator: 'Anthony',
+        area: 'Headworks',
+
       })
     }
-    operatorAllen = () => {
+
+    responsibilityChangeRamon = () => {
       this.setState({
-        operator: 'Allen',
+        responsibility: 'Ramon',
       })
     }
-    operatorTim = () => {
+    responsibilityChangeRamonChangeAnthony = () => {
       this.setState({
-        operator: 'Tim',
+        responsibility: 'Anthony',
+      })
+    }
+    responsibilityChangeRamonChangeTim = () => {
+      this.setState({
+        responsibility: 'Tim',
+      })
+    }
+    responsibilityChangeRamonChangeAllen = () => {
+      this.setState({
+        responsibility: 'Allen',
       })
     }
 
@@ -255,8 +243,8 @@ export default class dailySamples extends Component {
             let areaData = [];
             let checkboxData = [];
             let idData = [];
-
-
+            let sampleDateData = [];
+            let ammoniaResultData = [];
 
 
 
@@ -308,9 +296,23 @@ export default class dailySamples extends Component {
     })
   });
 
+  snapshot.forEach(ss => {
+  sampleDateData.push(ss.child('sampleDate').val());
+  this.setState({
+    sampleDateData: (sampleDateData),
+  })
+});
 
-        console.log(startDateData);
-        console.log(endDateData);
+snapshot.forEach(ss => {
+ammoniaResultData.push(ss.child('ammoniaResult').val());
+this.setState({
+  ammoniaResultData: parseInt(ammoniaResultData),
+})
+});
+
+
+
+
 
 
 
@@ -322,22 +324,24 @@ export default class dailySamples extends Component {
 
 
           //chart labels first
-          let chartData = [['StartDate', 'EndDate', 'Area', 'Description', 'Responsibility', 'Test']];
+          let chartData = [['Date', 'Concentration']];
           let tssGraph = [['Date', 'TSS Concentration']];
           let bodGraph = [['Date', 'BOD Concentration']];
           let nitrateGraph = [['Date', 'Nitrate Concentration']];
           let nitriteGraph = [['Date', 'Nitrite Concentration']];
           let ammoniaGraph = [['Date', 'Ammonia Concentration']];
+          console.log(chartData);
+          console.log(parseInt(ammoniaResultData));
 
 
           //loop to scan firebase data
-          for (let i=0; i < startDateData.length; i++) {
+          for (let i=0; i < sampleDateData.length; i++) {
             //push send this data to the back of the chartData variable above.
-            chartData.push([new Date(Date.parse(startDateData[i])), new Date(Date.parse(endDateData[i])), (areaData[i]), (descriptionData[i]), (responsibilityData[i]), (checkboxData[i])]);
+            chartData.push([new Date(Date.parse(sampleDateData[i])), parseInt(ammoniaResultData[i])]);
 
             this.setState({
               chartData: chartData,
-              startDateData: startDateData,
+
 
 
             })
@@ -346,8 +350,8 @@ export default class dailySamples extends Component {
 
           }
           console.log(chartData);
-          console.log(areaData);
-          areaData.sort();
+
+
 
 
 
@@ -369,40 +373,22 @@ export default class dailySamples extends Component {
               sampleDate: orders[order].sampleDate,
               sampleTime: orders[order].sampleTime,
               operator: orders[order].operator,
-
               sampleLocation: orders[order].sampleLocation,
-              temperatureSamplingTime: orders[order].temperatureSamplingTime,
-              temperatureAnalysisTime: orders[order].temperatureAnalysisTime,
               temperatureResult: orders[order].temperatureResult,
-              conductivitySamplingTime: orders[order].conductivitySamplingTime,
-              conductivityAnalysisTime: orders[order].conductivityAnalysisTime,
               conductivityResult: orders[order].conductivityResult,
-              pHSamplingTime: orders[order].pHSamplingTime,
-              pHAnalysisTime: orders[order].pHAnalysisTime,
               pHResult: orders[order].pHResult,
-              DOSamplingTime: orders[order].DOSamplingTime,
-              DOAnalysisTime: orders[order].DOAnalysisTime,
               DOResult: orders[order].DOResult,
-
-              nitrateSamplingTime: orders[order].nitrateSamplingTime,
-              nitrateAnalysisTime: orders[order].nitrateAnalysisTime,
               nitrateResult: orders[order].nitrateResult,
-              nitriteSamplingTime: orders[order].nitriteSamplingTime,
-              nitriteAnalysisTime: orders[order].nitriteAnalysisTime,
               nitriteResult: orders[order].nitriteResult,
-              ammoniaSamplingTime: orders[order].ammoniaSamplingTime,
-              ammoniaAnalysisTime: orders[order].ammoniaAnalysisTime,
               ammoniaResult: orders[order].ammoniaResult,
-
-
-
-
+              totalInorganicNitrogen: orders[order].totalInorganicNitrogen,
+              turbidityResult: orders[order].turbidityResult,
+              TSSResult: orders[order].TSSResult,
 
             });
           }
           this.setState({
             orders: newState,
-            totalInorganicNitrogen: this.state.ammoniaResult + this.state.nitriteResult + this.state.nitrateResult,
           });
 
 
@@ -425,10 +411,36 @@ export default class dailySamples extends Component {
       this.removeAuthListener = fire.auth().onAuthStateChanged(user=>{
       const sampleRef = fire.database().ref(`/dailySamples/${user.uid}/${itemId}`);
       console.log("Fill em in");
+      console.log(this.state.id);
       sampleRef.on('value', (snapshot) => {
 
+        this.setState({
+          startDate: '',
+          endDate: '',
+          area: '',
+          responsibility: '',
+          description: '',
+          sampleDate: '',
+          sampleTime: '',
+          operator: '',
+          sampleLocation: '',
+          temperatureResult: '',
+          conductivityResult: '',
+          pHResult: '',
+          DOResult: '',
+          nitrateResult: '',
+          nitriteResult: '',
+          ammoniaResult: '',
+          totalInorganicNitrogen: '',
+          turbidityResult: '',
+          TSSResult: '',
+
+        });
+
       let orders = snapshot.val();
+      let id = fire.database().ref().child(`/dailySamples/${user.uid}/${itemId}`).key;
       console.log(orders);
+      console.log(id);
       console.log(snapshot.child('area').val());
       let newState = [];
       for (let order in orders) {
@@ -441,37 +453,20 @@ export default class dailySamples extends Component {
           description: orders[order].description,
           responsibility: orders[order].responsibility,
 
-
           sampleDate: orders[order].sampleDate,
           sampleTime: orders[order].sampleTime,
           operator: orders[order].operator,
-
           sampleLocation: orders[order].sampleLocation,
-          temperatureSamplingTime: orders[order].temperatureSamplingTime,
-          temperatureAnalysisTime: orders[order].temperatureAnalysisTime,
           temperatureResult: orders[order].temperatureResult,
-          conductivitySamplingTime: orders[order].conductivitySamplingTime,
-          conductivityAnalysisTime: orders[order].conductivityAnalysisTime,
           conductivityResult: orders[order].conductivityResult,
-
-          pHSamplingTime: orders[order].pHSamplingTime,
-          pHAnalysisTime: orders[order].pHAnalysisTime,
           pHResult: orders[order].pHResult,
-          DOSamplingTime: orders[order].DOSamplingTime,
-          DOAnalysisTime: orders[order].DOAnalysisTime,
           DOResult: orders[order].DOResult,
-
-          nitrateSamplingTime: orders[order].nitrateSamplingTime,
-          nitrateAnalysisTime: orders[order].nitrateAnalysisTime,
           nitrateResult: orders[order].nitrateResult,
-          nitriteSamplingTime: orders[order].nitriteSamplingTime,
-          nitriteAnalysisTime: orders[order].nitriteAnalysisTime,
           nitriteResult: orders[order].nitriteResult,
-          ammoniaSamplingTime: orders[order].ammoniaSamplingTime,
-          ammoniaAnalysisTime: orders[order].ammoniaAnalysisTime,
           ammoniaResult: orders[order].ammoniaResult,
-
-
+          totalInorganicNitrogen: orders[order].totalInorganicNitrogen,
+          turbidityResult: orders[order].turbidityResult,
+          TSSResult: orders[order].TSSResult,
 
         });
       }
@@ -481,48 +476,77 @@ export default class dailySamples extends Component {
         startDate: snapshot.child('startDate').val(),
         endDate: snapshot.child('endDate').val(),
         description: snapshot.child('description').val(),
-        id: snapshot.child('id').val(),
-        key: 2,
-
+        id: id,
+        key: 3,
 
         sampleDate: snapshot.child('sampleDate').val(),
         sampleTime: snapshot.child('sampleTime').val(),
         operator: snapshot.child('operator').val(),
-
         sampleLocation: snapshot.child('sampleLocation').val(),
-        temperatureSamplingTime: snapshot.child('temperatureSamplingTime').val(),
-        temperatureAnalysisTime: snapshot.child('temperatureAnalysisTime').val(),
         temperatureResult: snapshot.child('temperatureResult').val(),
-        conductivitySamplingTime: snapshot.child('conductivitySamplingTime').val(),
-        conductivityAnalysisTime: snapshot.child('conductivityAnalysisTime').val(),
         conductivityResult: snapshot.child('conductivityResult').val(),
-
-        pHSamplingTime: snapshot.child('pHSamplingTime').val(),
-        pHAnalysisTime: snapshot.child('pHAnalysisTime').val(),
         pHResult: snapshot.child('pHResult').val(),
-        DOSamplingTime: snapshot.child('DOSamplingTime').val(),
-        DOAnalysisTime: snapshot.child('DOAnalysisTime').val(),
         DOResult: snapshot.child('DOResult').val(),
-
-        nitrateSamplingTime: snapshot.child('nitrateSamplingTime').val(),
-        nitrateAnalysisTime: snapshot.child('nitrateAnalysisTime').val(),
         nitrateResult: snapshot.child('nitrateResult').val(),
-        nitriteSamplingTime: snapshot.child('nitriteSamplingTime').val(),
-        nitriteAnalysisTime: snapshot.child('nitriteAnalysisTime').val(),
         nitriteResult: snapshot.child('nitriteResult').val(),
-        ammoniaSamplingTime: snapshot.child('ammoniaSamplingTime').val(),
-        ammoniaAnalysisTime: snapshot.child('ammoniaAnalysisTime').val(),
         ammoniaResult: snapshot.child('ammoniaResult').val(),
+        totalInorganicNitrogen: snapshot.child('totalInorganicNitrogen').val(),
+        turbidityResult: snapshot.child('turbidityResult').val(),
+        TSSResult: snapshot.child('TSSResult').val(),
 
 
 
 
       })
+      console.log(this.state.id);
 
 
 });
+
     });
   }
+
+
+  writeStates = (itemId) => {
+
+    this.removeAuthListener = fire.auth().onAuthStateChanged(user=>{
+    const sampleRef = fire.database().ref(`/dailySamples/${user.uid}/${this.state.id}`);
+    console.log("Fill em in");
+    sampleRef.child("startDate").set(this.state.startDate);
+    sampleRef.child("endDate").set(this.state.endDate);
+    sampleRef.child("area").set(this.state.area);
+    sampleRef.child("description").set(this.state.description);
+    sampleRef.child("responsibility").set(this.state.responsibility);
+    sampleRef.child("id").set(this.state.id);
+
+
+    sampleRef.child("sampleDate").set(this.state.sampleDate);
+    sampleRef.child("sampleTime").set(this.state.sampleTime);
+    sampleRef.child("operator").set(this.state.operator);
+    sampleRef.child("sampleLocation").set(this.state.sampleLocation);
+    sampleRef.child("temperatureResult").set(this.state.temperatureResult);
+    sampleRef.child("conductivityResult").set(this.state.conductivityResult);
+    sampleRef.child("pHResult").set(this.state.pHResult);
+    sampleRef.child("DOResult").set(this.state.DOResult);
+    sampleRef.child("nitrateResult").set(this.state.nitrateResult);
+    sampleRef.child("nitriteResult").set(this.state.nitriteResult);
+    sampleRef.child("ammoniaResult").set(this.state.ammoniaResult);
+    sampleRef.child("totalInorganicNitrogen").set(this.state.totalInorganicNitrogen);
+    sampleRef.child("turbidityResult").set(this.state.turbidityResult);
+    sampleRef.child("TSSResult").set(this.state.TSSResult);
+
+
+  });
+
+
+  }
+
+
+
+
+
+
+
 
   fillEmpty(itemId) {
     let area = '';
@@ -545,38 +569,20 @@ export default class dailySamples extends Component {
         description: orders[order].description,
         responsibility: orders[order].responsibility,
 
-
-
-
         sampleDate: orders[order].sampleDate,
         sampleTime: orders[order].sampleTime,
         operator: orders[order].operator,
-
         sampleLocation: orders[order].sampleLocation,
-        temperatureSamplingTime: orders[order].temperatureSamplingTime,
-        temperatureAnalysisTime: orders[order].temperatureAnalysisTime,
         temperatureResult: orders[order].temperatureResult,
-        conductivitySamplingTime: orders[order].conductivitySamplingTime,
-        conductivityAnalysisTime: orders[order].conductivityAnalysisTime,
         conductivityResult: orders[order].conductivityResult,
-
-        pHSamplingTime: orders[order].pHSamplingTime,
-        pHAnalysisTime: orders[order].pHAnalysisTime,
         pHResult: orders[order].pHResult,
-        DOSamplingTime: orders[order].DOSamplingTime,
-        DOAnalysisTime: orders[order].DOAnalysisTime,
         DOResult: orders[order].DOResult,
-
-        nitrateSamplingTime: orders[order].nitrateSamplingTime,
-        nitrateAnalysisTime: orders[order].nitrateAnalysisTime,
         nitrateResult: orders[order].nitrateResult,
-        nitriteSamplingTime: orders[order].nitriteSamplingTime,
-        nitriteAnalysisTime: orders[order].nitriteAnalysisTime,
         nitriteResult: orders[order].nitriteResult,
-        ammoniaSamplingTime: orders[order].ammoniaSamplingTime,
-        ammoniaAnalysisTime: orders[order].ammoniaAnalysisTime,
         ammoniaResult: orders[order].ammoniaResult,
-
+        totalInorganicNitrogen: orders[order].totalInorganicNitrogen,
+        turbidityResult: orders[order].turbidityResult,
+        TSSResult: orders[order].TSSResult,
 
       });
     }
@@ -587,71 +593,120 @@ export default class dailySamples extends Component {
       endDate: '',
       description: '',
       id: '',
-      key: 2,
-
-
-
-
+      key: 3,
       sampleDate: '',
       sampleTime: '',
       operator: '',
-
       sampleLocation: '',
-      temperatureSamplingTime: '',
-      temperatureAnalysisTime: '',
       temperatureResult: '',
-      conductivitySamplingTime: '',
-      conductivityAnalysisTime: '',
       conductivityResult: '',
-
-      pHSamplingTime: '',
-      pHAnalysisTime: '',
       pHResult: '',
-      DOSamplingTime: '',
-      DOAnalysisTime: '',
       DOResult: '',
-
-      nitrateSamplingTime: '',
-      nitrateAnalysisTime: '',
       nitrateResult: '',
-      nitriteSamplingTime: '',
-      nitriteAnalysisTime: '',
       nitriteResult: '',
-      ammoniaSamplingTime: '',
-      ammoniaAnalysisTime: '',
       ammoniaResult: '',
-
+      totalInorganicNitrogen: '',
+      turbidityResult: '',
+      TSSResult: '',
 
 
 
     })
+
 
 });
   });
 }
 
+  createNewWorkOrder (itemId) {
 
-
-    removesample = (e) => {
+      let area = '';
       this.removeAuthListener = fire.auth().onAuthStateChanged(user=>{
-        const samplesRef = fire.database().ref(`dailySamples/${user.uid}`);
-        const orderID = fire.database().ref(`/dailySamples/${user.uid}/${e}`);
-      orderID.remove();
+      const sampleRef = fire.database().ref(`/dailySamples/${user.uid}/${itemId}`);
+      console.log("Fill em in");
+      sampleRef.on('value', (snapshot) => {
+
+      let orders = snapshot.val();
+      console.log(orders);
+      console.log(snapshot.child('area').val());
+      let newState = [];
+      for (let order in orders) {
+        newState.push({
+          id: order,
+
+          area: orders[order].area,
+          startDate: orders[order].startDate,
+          endDate: orders[order].endDate,
+          description: orders[order].description,
+          responsibility: orders[order].responsibility,
+          sampleDate: orders[order].sampleDate,
+          sampleTime: orders[order].sampleTime,
+          operator: orders[order].operator,
+          sampleLocation: orders[order].sampleLocation,
+          temperatureResult: orders[order].temperatureResult,
+          conductivityResult: orders[order].conductivityResult,
+          pHResult: orders[order].pHResult,
+          DOResult: orders[order].DOResult,
+          nitrateResult: orders[order].nitrateResult,
+          nitriteResult: orders[order].nitriteResult,
+          ammoniaResult: orders[order].ammoniaResult,
+          totalInorganicNitrogen: orders[order].totalInorganicNitrogen,
+          turbidityResult: orders[order].turbidityResult,
+          TSSResult: orders[order].TSSResult,
+
+        });
+      }
+      this.setState({
+        area: snapshot.child('area').val(),
+        responsibility: snapshot.child('responsibility').val(),
+        startDate: snapshot.child('startDate').val(),
+        endDate: snapshot.child('endDate').val(),
+        description: snapshot.child('description').val(),
+        id: snapshot.child('id').val(),
+        key: 3,
+
+        sampleDate: snapshot.child('sampleDate').val(),
+        sampleTime: snapshot.child('sampleTime').val(),
+        operator: snapshot.child('operator').val(),
+        sampleLocation: snapshot.child('sampleLocation').val(),
+        temperatureResult: snapshot.child('temperatureResult').val(),
+        conductivityResult: snapshot.child('conductivityResult').val(),
+        pHResult: snapshot.child('pHResult').val(),
+        DOResult: snapshot.child('DOResult').val(),
+        nitrateResult: snapshot.child('nitrateResult').val(),
+        nitriteResult: snapshot.child('nitriteResult').val(),
+        ammoniaResult: snapshot.child('ammoniaResult').val(),
+        totalInorganicNitrogen: snapshot.child('totalInorganicNitrogen').val(),
+        turbidityResult: snapshot.child('turbidityResult').val(),
+        TSSResult: snapshot.child('TSSResult').val(),
+
+
+
+      })
+
+
+});
     });
-    this.setState({
 
-      key: 1,
 
-    })
+
+
+  }
+
+    removesample(itemId) {
+      this.removeAuthListener = fire.auth().onAuthStateChanged(user=>{
+      const sampleRef = fire.database().ref(`/dailySamples/${user.uid}/${itemId}`);
+      sampleRef.remove();
+    });
     }
 
-    handleSelect = (key) => {
+    handleSelect(key) {
 
   this.setState({key});
 }
 
 
-writeData = (e) => {
+writeData (e) {
   e.preventDefault();
   //fire.database().ref('samples') refers to the main title of the fire database.
   this.removeAuthListener = fire.auth().onAuthStateChanged(user=>{
@@ -663,71 +718,33 @@ writeData = (e) => {
   let box = id;
 
   console.log(box);
-  const dailySample = {
+  const sample = {
 
-
-    id: newCheckboxKey,
+    id: this.state.id,
+    area: this.state.area,
+    responsibility: this.state.responsibility,
+    description: this.state.description,
+    startDate: this.state.startDate,
+    endDate: this.state.endDate,
+    checkbox: '<button id="buttonTest" onClick={buttonTest}>Test<button>',
 
     sampleDate: this.state.sampleDate,
     sampleTime: this.state.sampleTime,
     operator: this.state.operator,
-
     sampleLocation: this.state.sampleLocation,
-    temperatureSamplingTime: this.state.temperatureSamplingTime,
-    temperatureAnalysisTime: this.state.temperatureAnalysisTime,
     temperatureResult: this.state.temperatureResult,
-    conductivitySamplingTime: this.state.conductivitySamplingTime,
-    conductivityAnalysisTime: this.state.conductivityAnalysisTime,
     conductivityResult: this.state.conductivityResult,
-
-    pHSamplingTime: this.state.pHSamplingTime,
-    pHAnalysisTime: this.state.pHAnalysisTime,
     pHResult: this.state.pHResult,
-    DOSamplingTime: this.state.DOSamplingTime,
-    DOAnalysisTime: this.state.DOAnalysisTime,
     DOResult: this.state.DOResult,
-
-    nitrateSamplingTime: this.state.nitrateSamplingTime,
-    nitrateAnalysisTime: this.state.nitrateAnalysisTime,
     nitrateResult: this.state.nitrateResult,
-    nitriteSamplingTime: this.state.nitriteSamplingTime,
-    nitriteAnalysisTime: this.state.nitriteAnalysisTime,
     nitriteResult: this.state.nitriteResult,
-    ammoniaSamplingTime: this.state.ammoniaSamplingTime,
-    ammoniaAnalysisTime: this.state.ammoniaAnalysisTime,
     ammoniaResult: this.state.ammoniaResult,
-
-
-
-    checkbox: '<button id="buttonTest" onClick={buttonTest}>Test<button>',
+    totalInorganicNitrogen: this.state.totalInorganicNitrogen,
+    turbidityResult: this.state.turbidityResult,
+    TSSResult: this.state.TSSResult,
   }
 
-  orderID.child("sampleDate").set(this.state.sampleDate);
-  orderID.child("sampleTime").set(this.state.sampleTime);
-  orderID.child("operator").set(this.state.operator);
-  orderID.child("sampleLocation").set(this.state.sampleLocation);
-  orderID.child("temperatureSamplingTime").set(this.state.temperatureSamplingTime);
-  orderID.child("temperatureAnalysisTime").set(this.state.temperatureAnalysisTime);
-  orderID.child("temperatureSamplingTime").set(this.state.temperatureSamplingTime);
-  orderID.child("conductivitySamplingTime").set(this.state.conductivitySamplingTime);
-  orderID.child("conductivityAnalysisTime").set(this.state.conductivityAnalysisTime);
-  orderID.child("conductivityResult").set(this.state.conductivityResult);
-  orderID.child("pHSamplingTime").set(this.state.pHSamplingTime);
-  orderID.child("pHAnalysisTime").set(this.state.pHAnalysisTime);
-  orderID.child("pHResult").set(this.state.pHResult);
-  orderID.child("DOSamplingTime").set(this.state.DOSamplingTime);
-  orderID.child("DOAnalysisTime").set(this.state.DOAnalysisTime);
-  orderID.child("DOResult").set(this.state.DOResult);
-  orderID.child("nitrateSamplingTime").set(this.state.nitrateSamplingTime);
-  orderID.child("nitrateAnalysisTime").set(this.state.nitrateAnalysisTime);
-  orderID.child("nitrateResult").set(this.state.nitrateResult);
-  orderID.child("nitriteSamplingTime").set(this.state.nitriteSamplingTime);
-  orderID.child("nitriteAnalysisTime").set(this.state.nitriteAnalysisTime);
-  orderID.child("nitriteResult").set(this.state.nitriteResult);
-  orderID.child("ammoniaSamplingTime").set(this.state.ammoniaSamplingTime);
-  orderID.child("ammoniaResult").set(this.state.ammoniaResult);
-  orderID.child("ammoniaResult").set(this.state.ammoniaResult);
-
+  samplesRef.child(this.state.id).set(sample);
 
 
 
@@ -741,34 +758,52 @@ writeData = (e) => {
 
 
 
+handleBtnClick = () => {
 
+  let order = 'desc';
+  if (order === 'desc') {
+    this.refs.table.handleSort('asc', 'name');
+    order = 'asc';
+  } else {
+    this.refs.table.handleSort('desc', 'name');
+    order = 'desc';
+  }
+}
 
-sortDate = (itemId) => {
+sortSampleDate = (itemId) => {
   console.log(this.state.orders);
+
   let orders = this.state.orders;
+
   orders.sort(function(a, b) {
+
     if (a.sampleDate === b.sampleDate) {
       return 0;
     }
     return a.sampleDate > b.sampleDate ? 1 : -1;
 });
+
 this.setState({
   orders: orders,
 
 })
 }
-sortDateBack = (itemId) => {
+sortSampleDateBack = (itemId) => {
   console.log(this.state.orders);
 
   let orders = this.state.orders;
+
   orders.sort(function(a, b) {
+
     if (b.sampleDate === a.sampleDate) {
       return 0;
     }
     return b.sampleDate > a.sampleDate ? 1 : -1;
 });
+
 this.setState({
   orders: orders,
+
 })
 }
 
@@ -801,6 +836,15 @@ this.setState({
 }
 
 
+filterArea = () => {
+  let orders = this.state.orders;
+  console.log(orders);
+  let newArray = orders.filter(function (el) {
+  return el.area == 'Headworks' &&
+  console.log(newArray);
+
+});
+}
 
 
 
@@ -808,9 +852,8 @@ this.setState({
 
 
 
-
-render() {
-  return (
+      render() {
+        return (
     <div>
 
       <Grid>
@@ -821,7 +864,7 @@ render() {
           </Col>
           <Col xs={6} md={6}>
             <ButtonToolbar style={styles.topPad}>
-          <Button  onClick={() => this.fillEmpty()} eventKey={2} bsSize="large">+ Create New Sample Log</Button>
+          <Button  onClick={() => this.fillEmpty()} eventKey={3} bsSize="large">+ Create New Sample Log</Button>
         </ButtonToolbar>
           </Col>
           </Row>
@@ -832,13 +875,8 @@ render() {
 
         <Tab eventKey={1} title="+ Daily Samples">
           <Grid>
-            <Row>
-            <Button onClick={this.sortDate}>Sort Test</Button>
-          <Button onClick={this.sortDateBack}>Sort Test</Button>
-        <Button onClick={this.sortDescription}>Sort Test</Button>
-      <Button onClick={this.sortDescriptionBack}>Sort Test</Button>
-    <Button onClick={this.filterArea}>Filter</Button></Row>
-          <Row>
+
+          <Row style={styles.topPad}>
 
 
             <Col xs={10} md={10}>
@@ -848,10 +886,15 @@ render() {
               <thead>
                 <tr>
 
-                  <th>Sample Date</th>
-                  <th>Operator</th>
-                  <th>pH</th>
-                  <th>DO</th>
+                  <th>Sample Date<TiArrowSortedDown onClick={this.sortSampleDateBack} /></th>
+                  <th>Operator<TiArrowSortedDown onClick={this.sortSampleDateBack} /></th>
+                  <th>pH<TiArrowSortedDown onClick={this.sortSampleDateBack} /></th>
+                  <th>DO<TiArrowSortedDown onClick={this.sortSampleDateBack} /></th>
+                  <th>Nitrate<TiArrowSortedDown onClick={this.sortSampleDateBack} /></th>
+                  <th>Nitrite<TiArrowSortedDown onClick={this.sortSampleDateBack} /></th>
+                  <th>Ammonia<TiArrowSortedDown onClick={this.sortSampleDateBack} /></th>
+                  <th>Turbidity<TiArrowSortedDown onClick={this.sortSampleDateBack} /></th>
+                  <th>TSS<TiArrowSortedDown onClick={this.sortSampleDateBack} /></th>
 
                 </tr>
 
@@ -865,8 +908,13 @@ render() {
                         <td>{order.operator}</td>
                         <td>{order.pHResult}</td>
                         <td>{order.DOResult}</td>
-                        <td><button onClick={() => this.fillStates(order.id)}>Edit Sample</button></td>
-                        <td><button onClick={() => this.removesample(order.id)}>Remove sample</button></td>
+                        <td>{order.nitrateResult}</td>
+                        <td>{order.nitriteResult}</td>
+                        <td>{order.ammoniaResult}</td>
+                        <td>{order.turbidityResult}</td>
+                        <td>{order.TSSResult}</td>
+                        <td><TiPencil onClick={() => this.fillStates(order.id)}>Edit Sample</TiPencil></td>
+                        <td><TiTrash onClick={() => this.removesample(order.id)}>Remove sample</TiTrash></td>
                         </tr>
 
 
@@ -887,10 +935,48 @@ render() {
         </Grid>
           </Tab>
 
+          <Tab eventKey={2} title="+ Graphs">
+
+            <Chart
+  width={'100%'}
+  height={'600px'}
+  chartType="Bar"
+  loader={<div>Loading Chart</div>}
+  data={this.state.chartData}
+  options={{
+    // Use the same chart area width as the control for axis alignment.
+    chartArea: { height: '80%', width: '90%' },
+    hAxis: { slantedText: false },
+    vAxis: { viewWindow: { min: 0, max: 2000 } },
+    legend: { position: 'none' },
+  }}
+  rootProps={{ 'data-testid': '3' }}
+  chartPackages={['corechart', 'controls']}
+  controls={[
+    {
+      controlType: 'ChartRangeFilter',
+      options: {
+        filterColumnIndex: 0,
+        ui: {
+          chartType: "Bar",
+          chartOptions: {
+            chartArea: { width: '90%', height: '50%' },
+            hAxis: { baselineColor: 'none' },
+          },
+        },
+      },
+      controlPosition: 'bottom',
+
+    },
+  ]}
+/>
+
+          </Tab>
 
 
 
-      <Tab eventKey={2} >
+
+      <Tab eventKey={3} >
         <Grid>
           <Row>
             <Col xs={10} md={10}>
@@ -901,7 +987,7 @@ render() {
                 <h2>Daily Sample Log</h2>
                 </Col>
                 <Col xs={6} sm={6} md={6}>
-                <input required="true" type="text" name="operator" placeholder="Operator Name?" onChange={this.handleChange} value={this.state.operator} />
+                <input  type="text" name="operator" placeholder="Operator Name?" onChange={this.handleChange} value={this.state.operator} />
                 </Col>
                 </Row>
                 <hr></hr>
@@ -919,9 +1005,9 @@ render() {
                     <tbody>
                     <tr>
 
-                    <td><input required="true" type="date" name="sampleDate" placeholder="Date of Sample" onChange={this.handleChange} value={this.state.sampleDate} />
+                    <td><input type="date" name="sampleDate" placeholder="Date of Sample" onChange={this.handleChange} value={this.state.sampleDate} />
                     </td>
-                    <td><input required="true" type="time" name="sampleTime" placeholder="Time of Sample" onChange={this.handleChange} value={this.state.sampleTime} /></td>
+                    <td><input type="time" name="sampleTime" placeholder="Time of Sample" onChange={this.handleChange} value={this.state.sampleTime} /></td>
                     <td><ButtonToolbar>
                       <DropdownButton title={this.state.sampleLocation} id="dropdown-size-medium">
                         <MenuItem eventKey="1" onSelect={this.sampleInfluent}>Influent</MenuItem>
@@ -949,17 +1035,14 @@ render() {
                       <thead>
                         <tr>
 
-                          <th>Sample Time</th>
-                          <th>Analysis Time</th>
+
                           <th>Results (C)</th>
                         </tr>
                       </thead>
                       <tbody>
                         <tr>
 
-                          <td><input type="time" name="temperatureSamplingTime" placeholder="Sampling Time" onChange={this.handleChange} value={this.state.temperatureSamplingTime} />
-                          </td>
-                          <td><input type="time" name="temperatureAnalysisTime" placeholder="Analysis Time" onChange={this.handleChange} value={this.state.temperatureAnalysisTime} /></td>
+
                           <td><input type="number" name="temperatureResult" placeholder="Result" onChange={this.handleChange} value={this.state.temperatureResult} /></td>
                         </tr>
 
@@ -973,17 +1056,14 @@ render() {
                     <thead>
                       <tr>
 
-                        <th>Sample Time</th>
-                        <th>Analysis Time</th>
+
                         <th>Results (M/CM)</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
 
-                        <td><input type="time" name="conductivitySamplingTime" placeholder="Sampling Time" onChange={this.handleChange} value={this.state.conductivitySamplingTime} />
-                        </td>
-                        <td><input type="time" name="conductivityAnalysisTime" placeholder="Analysis Time" onChange={this.handleChange} value={this.state.conductivityAnalysisTime} /></td>
+
                         <td><input type="number" name="conductivityResult" placeholder="Result" onChange={this.handleChange} value={this.state.conductivityResult} /></td>
                       </tr>
 
@@ -1002,17 +1082,14 @@ render() {
                           <thead>
                             <tr>
 
-                              <th>Sample Time</th>
-                              <th>Analysis Time</th>
+
                               <th>Results</th>
                             </tr>
                           </thead>
                           <tbody>
                             <tr>
 
-                              <td><input type="time" name="pHSamplingTime" placeholder="Sampling Time" onChange={this.handleChange} value={this.state.pHSamplingTime} />
-                              </td>
-                              <td><input type="time" name="pHAnalysisTime" placeholder="Analysis Time" onChange={this.handleChange} value={this.state.pHAnalysisTime} /></td>
+
                               <td><input type="number" name="pHResult" placeholder="Result" onChange={this.handleChange} value={this.state.pHResult} /></td>
                             </tr>
 
@@ -1026,17 +1103,14 @@ render() {
                         <thead>
                           <tr>
 
-                            <th>Sample Time</th>
-                            <th>Analysis Time</th>
+
                             <th>Results (mg/L)</th>
                           </tr>
                         </thead>
                         <tbody>
                           <tr>
 
-                            <td><input type="time" name="DOSamplingTime" placeholder="Sampling Time" onChange={this.handleChange} value={this.state.DOSamplingTime} />
-                            </td>
-                            <td><input type="time" name="DOAnalysisTime" placeholder="Analysis Time" onChange={this.handleChange} value={this.state.DOAnalysisTime} /></td>
+
                             <td><input type="number" name="DOResult" placeholder="Result" onChange={this.handleChange} value={this.state.DOResult} /></td>
                           </tr>
 
@@ -1059,17 +1133,14 @@ render() {
                               <thead>
                                 <tr>
 
-                                  <th>Sample Time</th>
-                                  <th>Analysis Time</th>
+
                                   <th>Results (mg/L)</th>
                                 </tr>
                               </thead>
                               <tbody>
                                 <tr>
 
-                                  <td><input type="time" name="nitrateSamplingTime" placeholder="Sampling Time" onChange={this.handleChange} value={this.state.nitrateSamplingTime} />
-                                  </td>
-                                  <td><input type="time" name="nitriteAnalysisTime" placeholder="Analysis Time" onChange={this.handleChange} value={this.state.nitriteAnalysisTime} /></td>
+
                                   <td><input type="number" name="nitrateResult" placeholder="Result" onChange={this.handleChange} value={this.state.nitrateResult} /></td>
                                 </tr>
 
@@ -1083,17 +1154,14 @@ render() {
                             <thead>
                               <tr>
 
-                                <th>Sample Time</th>
-                                <th>Analysis Time</th>
+
                                 <th>Results (mg/L)</th>
                               </tr>
                             </thead>
                             <tbody>
                               <tr>
 
-                                <td><input type="time" name="nitriteSamplingTime" placeholder="Sampling Time" onChange={this.handleChange} value={this.state.nitriteAnalysisTime} />
-                                </td>
-                                <td><input type="time" name="nitriteAnalysisTime" placeholder="Analysis Time" onChange={this.handleChange} value={this.state.nitriteAnalysisTime} /></td>
+
                                 <td><input type="number" name="nitriteResult" placeholder="Result" onChange={this.handleChange} value={this.state.nitriteResult} /></td>
                               </tr>
 
@@ -1110,17 +1178,14 @@ render() {
                                 <thead>
                                   <tr>
 
-                                    <th>Sample Time</th>
-                                    <th>Analysis Time</th>
+
                                     <th>Results (mg/L)</th>
                                   </tr>
                                 </thead>
                                 <tbody>
                                   <tr>
 
-                                    <td><input type="time" name="ammoniaSamplingTime" placeholder="Sampling Time" onChange={this.handleChange} value={this.state.ammoniaSamplingTime} />
-                                    </td>
-                                    <td><input type="time" name="ammoniaAnalysisTime" placeholder="Analysis Time" onChange={this.handleChange} value={this.state.ammoniaAnalysisTime} /></td>
+
                                     <td><input type="number" name="ammoniaResult" placeholder="Result" onChange={this.handleChange} value={this.state.ammoniaResult} /></td>
                                   </tr>
 
@@ -1154,10 +1219,55 @@ render() {
 
 
 
+
                       <hr></hr>
 
 
+                        <Row>
+                          <Col xs={5} md={5}>
+                            <strong>Turbidity (NTU)</strong>
+                            <Table striped bordered condensed hover>
+                          <thead>
+                            <tr>
 
+
+                              <th>Results (NTU)</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+
+
+                              <td><input type="number" name="turbidityResult" placeholder="Result" onChange={this.handleChange} value={this.state.turbidityResult} /></td>
+                            </tr>
+
+
+                          </tbody>
+                        </Table>
+                        </Col>
+                        <Col xs={5} md={5} xsOffset={1} smOffset={1} mdOffset={1}>
+                          <strong>TSSResult (mg/L)</strong>
+                          <Table striped bordered condensed hover>
+                        <thead>
+                          <tr>
+
+
+                            <th>Results (mg/L)</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+
+
+                            <td><input type="number" name="TSSResult" placeholder="Result" onChange={this.handleChange} value={this.state.TSSResult} /></td>
+                          </tr>
+
+
+                        </tbody>
+                      </Table>
+                      </Col>
+
+                          </Row>
 
 
 
@@ -1186,5 +1296,5 @@ render() {
 
     </div>
         )
-      }
-    }
+            }
+          }

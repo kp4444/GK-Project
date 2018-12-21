@@ -122,6 +122,33 @@ const popoverRightAsset = (
   </Popover>
 );
 
+const popoverRightDocuments = (
+  <Popover id="popover-trigger-focus" title="Popover bottom">
+    <strong>Documents</strong>
+      <NavItem componentClass={Link} href="/files" to="/files">
+      Upload Document
+    </NavItem>
+    <NavItem componentClass={Link} href="/data" to="/data">
+      Equipment Manual
+    </NavItem>
+    <NavItem componentClass={Link} href="/workOrders" to="/workOrders">
+      Permits
+    </NavItem>
+    <NavItem componentClass={Link} href="/data" to="/data">
+      Reports
+    </NavItem>
+    <strong>Equipment Inventory</strong>
+    <NavItem componentClass={Link} href="/data" to="/data">
+      Vendor Contacts
+    </NavItem>
+    <NavItem componentClass={Link} href="/data" to="/data">
+      Equipment List
+    </NavItem>
+
+
+  </Popover>
+);
+
 class SignInScreen extends React.Component {
   constructor(props, context) {
     super(props, context);
@@ -210,6 +237,10 @@ class SignInScreen extends React.Component {
     <ListGroupItem>Asset Manager</ListGroupItem>
     </OverlayTrigger>
 
+    <OverlayTrigger rootClose="true" trigger="click" placement="right" overlay={popoverRightDocuments}>
+   <ListGroupItem>Documents</ListGroupItem>
+   </OverlayTrigger>
+
          <ListGroupItem onClick={() => this.setState({ open1: !this.state.open1 })}>Permits</ListGroupItem>
            <Collapse in={this.state.open1}>
                 <div>
@@ -218,16 +249,7 @@ class SignInScreen extends React.Component {
 
                 </div>
               </Collapse>
-      <ListGroupItem onClick={() => this.setState({ open2: !this.state.open2 })}>Documents</ListGroupItem>
-        <Collapse in={this.state.open2}>
-             <div>
-               <ListGroupItem>Existing Permits</ListGroupItem>
-               <OverlayTrigger trigger="click" placement="right" overlay={popoverRight}>
-              <ListGroupItem>Training Forms</ListGroupItem>
-              </OverlayTrigger>
 
-             </div>
-           </Collapse>
 
 </ListGroup>
 <Button bsStyle="info" onClick={() => firebase.auth().signOut()}>Sign Out
@@ -257,6 +279,7 @@ class SignInScreen extends React.Component {
             <Route path="/dailySamples" component={dailySamples} />
             <Route path ="/maintenance" component={maintenance} />
             <Route path ="/workOrders" component={workOrders} />
+            
 
             </Col>
         </Row>
